@@ -49,9 +49,16 @@ if(form)
 function renderHabit(habit){
     //select list item in html
     const list = document.querySelector('#js-habit-list');
-
     //check if habit is in DOM already 
     const item = document.querySelector(`[data-key = '${habit.id}']`);
+
+    //if delete is called
+    //remove item
+    if(habit.deleted){
+        item.remove();
+        return;
+    }
+
 
     //see if habit is checked
     const isChecked = habit.checked ? 'done':'';
@@ -66,14 +73,19 @@ function renderHabit(habit){
         <label for="${habit.id}" class = "tick js-tick"></label>
         <span>${habit.text}</span>
         <button class = "delete-habit js-delete-habit">
-        <svg><use href="#delete-icon"></use></svg>
+            <svg><use href="#delete-icon"></use></svg>
         </button>
     `;
 
+    //if item already in DOM
+    if(item){
+        list.replaceChild(node,item);
+    }
+    else{
     //append the li elemnt to DOM
     //as last child of element referenced by `list` variable
     list.append(node);
-    console.log("show habit");
+    }
 
 }
 
@@ -82,11 +94,22 @@ const list = document.querySelector('#js-habit-list');
 if(list)
 {
     list.addEventListener('click', event => {
+        //toggle done
         if(event.target.classList.contains('js-tick')){
             const itemKey = event.target.parentElement.dataset.key;
+            console.log("ticking...");
             toggleDone(itemKey);
         }
+
+        //detele items
+        if(event.target.classList.contains('delete-habit')){
+            const itemKey = event.target.parentElement.dataset.key;
+            console.log("deleting...");
+            deleteHabit(itemKey);
+        }
     });
+
+
 }
 
 
@@ -98,3 +121,19 @@ function toggleDone(key){
     habitItems[index].checked = !habitItems[index].checked;
     renderHabit(habitItems[index]);
 }
+
+
+function deleteHabit(key){
+        //find index of this habit based on key
+        const index = habitItems.findIndex(item => item.id === Number(key));
+
+        //create a new object with same property to current to item but with deleted as true
+        const habit = {
+            deleted:true,
+            ...habitItems[index]
+        };
+        //delete the original item by filtering it out
+        habitItems = habitItems.filter(item => item.id !== Number(key));
+        renderHabit(habit);
+}
+
