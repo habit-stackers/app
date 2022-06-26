@@ -1,28 +1,100 @@
-// Copyright 2020 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Do you like guacamole?', 'I went to six different schools', 'Are you also a cat person?', '你好呀朋友'];
+//habit list item array
+let habitItems = [];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+//create a new habit item based on the text from input
+//add to habitItems list
+function addHabit(text) {
+    const habit = {
+      text,
+      checked: false,
+      id: Date.now(),
+    };
+  
+    habitItems.push(habit);
+    renderHabit(habit);
+    console.log(habitItems);
+  }
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+//select the from element 
+form = document.querySelector("#js-form");
+if(form)
+{
+    console.log("get form");
+
+//submit event listener
+//when a new habit sumbitted, it will be added to habitItems list
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        console.log("submitted");
+        //prevent page from refreshing when form submitted
+        event.preventDefault();
+    
+        //select text input
+        input = document.querySelector('#js-habit-input');
+    
+        //process input
+        //remove whitespace
+        text = input.value.trim();
+        //add to habitItems list
+        if (text !== ''){
+            addHabit(text);
+            console.log("add habit");
+            input.value = '';
+            input.focus();
+        }
+    });
+}
+//render habits on the screen
+function renderHabit(habit){
+    //select list item in html
+    const list = document.querySelector('#js-habit-list');
+
+    //check if habit is in DOM already 
+    const item = document.querySelector(`[data-key = '${habit.id}']`);
+
+    //see if habit is checked
+    const isChecked = habit.checked ? 'done':'';
+    //create an `li` element and assign it to `node`
+    const node = document.createElement("li");
+    //set the class attribute
+    node.setAttribute('class', `habit-item ${isChecked}`);
+    node.setAttribute('data-key',habit.id);
+    //set the contents of the li element
+    node.innerHTML = `
+        <input id="${habit.id}" type = "checkbox"/>
+        <label for="${habit.id}" class = "tick js-tick"></label>
+        <span>${habit.text}</span>
+        <button class = "delete-habit js-delete-habit">
+        <svg><use href="#delete-icon"></use></svg>
+        </button>
+    `;
+
+    //append the li elemnt to DOM
+    //as last child of element referenced by `list` variable
+    list.append(node);
+    console.log("show habit");
+
+}
+
+//mark a habit as done
+const list = document.querySelector('#js-habit-list');
+if(list)
+{
+    list.addEventListener('click', event => {
+        if(event.target.classList.contains('js-tick')){
+            const itemKey = event.target.parentElement.dataset.key;
+            toggleDone(itemKey);
+        }
+    });
+}
+
+
+//toggle done icon of a habit based on key value
+function toggleDone(key){
+    //find index of this habit based on key
+    const index = habitItems.findIndex(item => item.id === Number(key));
+    //false to true, true to false
+    habitItems[index].checked = !habitItems[index].checked;
+    renderHabit(habitItems[index]);
 }
