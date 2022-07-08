@@ -14,7 +14,7 @@ function addHabit(text) {
 }
 
 // Select the from element
-form = document.querySelector("#js-form");
+//form = document.querySelector("#js-form");
 // Submit event listener
 // When a new habit sumbitted, it will be added to habitItems list
 form.addEventListener("submit", (event) => {
@@ -24,7 +24,7 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
 
   // Select text input
-  input = document.querySelector("#js-habit-input");
+  //input = document.querySelector("#js-habit-input");
 
   // Process input
   // Remove whitespace

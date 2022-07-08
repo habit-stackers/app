@@ -24,7 +24,7 @@ public class CreateHabitServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Sanitize user input to remove HTML tags and JavaScript.
     String habit = Jsoup.clean(request.getParameter("habitName"), Whitelist.none());
-    String list = Jsoup.clean(request.getParameter("listName"), Whitelist.none());
+    String list = "Make the bed.";//Jsoup.clean(request.getParameter("listName"), Whitelist.none());
 
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     KeyFactory keyFactory = datastore.newKeyFactory().setKind("Habit");
