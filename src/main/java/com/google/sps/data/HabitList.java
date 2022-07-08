@@ -1,15 +1,17 @@
 
-package main.java.com.google.sps.data;
+package com.google.sps.data;
+
+import com.google.cloud.datastore.TimestampValue;
 
 public final class HabitList {
     
 
-    private final TimeStamp notifyTime;
-    private final string listName;
-    private final string username;
+    //private final TimestampValue notifyTime;
+    private final String listName;
+    private final String username;
 
-    public HabitList(TimeStamp notifyTime, string listName, string username) {
-        this.notifyTime = notifyTime;
+    public HabitList(/*TimestampValue notifyTime,*/ String listName, String username) {
+        //this.notifyTime = notifyTime;
         this.listName = listName;
         this.username = username;
     }

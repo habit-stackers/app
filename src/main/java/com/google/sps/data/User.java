@@ -1,10 +1,10 @@
-package main.java.com.google.sps.data;
+package com.google.sps.data;
 
 public final class User {
-    private final string username;
-    private final string sessionKey;
+    private final String username;
+    private final String sessionKey;
 
-    public Habit(string username, string sessionKey) {
+    public User(String username, String sessionKey) {
         this.username = username;
         this.sessionKey = sessionKey;
     }

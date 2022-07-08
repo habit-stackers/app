@@ -1,4 +1,4 @@
-package main.java.com.google.sps.servlets;
+package com.google.sps.servlets;
 
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
@@ -15,7 +15,7 @@ public class DeleteListServlet extends HttpServlet {
     
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      String listName = String.parseString(request.getParameter("listName"));
+      String listName = request.getParameter("listName");
   
       Datastore datastore = DatastoreOptions.getDefaultInstance().getService(); // Creates an instance of the Datastore Class
       KeyFactory keyFactory = datastore.newKeyFactory().setKind("HabitList");        // Creates a KeyFactory for the table (? don't really know what that is yet)
