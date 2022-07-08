@@ -1,4 +1,21 @@
-let habitItems = [];
+function loadHabits() {
+  fetch('/list-habitlist').then(response => response.json()).then((tasks) => {
+    const taskListElement = document.getElementById('habitList');
+    tasks.forEach((task) => {
+      taskListElement.appendChild(createTaskElement(task));
+    })
+  });
+}
+
+/*
+form = document.querySelector("#js-form").addEventListener("submit", (event) =>
+{
+  event.preventDefault();
+
+});
+*/
+
+/*let habitItems = [];
 
 // Create a new habit item based on the text from input
 // Add to habitItems list
@@ -14,7 +31,7 @@ function addHabit(text) {
 }
 
 // Select the from element
-//form = document.querySelector("#js-form");
+form = document.querySelector("#js-form");
 // Submit event listener
 // When a new habit sumbitted, it will be added to habitItems list
 form.addEventListener("submit", (event) => {
@@ -24,7 +41,7 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
 
   // Select text input
-  //input = document.querySelector("#js-habit-input");
+  input = document.querySelector("#js-habit-input");
 
   // Process input
   // Remove whitespace
@@ -125,3 +142,4 @@ function deleteHabit(key) {
   habitItems = habitItems.filter((item) => item.id !== Number(key));
   renderHabit(habit);
 }
+*/
