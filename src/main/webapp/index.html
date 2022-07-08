@@ -10,8 +10,8 @@
         <div class="container">
           <h1 class="app-title">Habits</h1>
           <ul id="js-habit-list"></ul>
-          <form id="js-form">
-            <input autofocus type="text" placeholder="E.g. meditate for 5 min" id="js-habit-input">
+          <form id="js-form" method="POST" action="/create-habit">
+            <input name="habitName" placeholder="E.g. meditate for 5 min" id="js-habit-input" autofocus>
           </form>
         </div>
       </main>
