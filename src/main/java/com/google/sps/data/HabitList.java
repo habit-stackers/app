@@ -2,7 +2,7 @@
 package main.java.com.google.sps.data;
 
 public final class HabitList {
-    
+  /*  
 
     private final TimeStamp notifyTime;
     private final string listName;
@@ -12,5 +12,5 @@ public final class HabitList {
         this.notifyTime = notifyTime;
         this.listName = listName;
         this.username = username;
-    }
+    }*/
 }

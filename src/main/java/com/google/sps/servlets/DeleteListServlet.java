@@ -1,4 +1,4 @@
-package main.java.com.google.sps.servlets;
+/*package main.java.com.google.sps.servlets;
 
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
@@ -22,4 +22,4 @@ public class DeleteListServlet extends HttpServlet {
       Key listEntityKey = keyFactory.newKey(listName);  
       datastore.delete(listEntityKey);
     }
-}
+}*/

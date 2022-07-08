@@ -1,5 +1,5 @@
 
-package main.java.com.google.sps.servlets;
+/*package main.java.com.google.sps.servlets;
 
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
-
+*/
 
 /* List Table
     private final TimeStamp notifyTime;
     private final string listName;
     private final string username;
 */
-
+/*
 @WebServlet("/create-list")
 public class CreateListServlet extends HttpServlet {
     @Override
@@ -43,4 +43,4 @@ public class CreateListServlet extends HttpServlet {
       response.sendRedirect("/index.html");
     }
 }
-
+*/

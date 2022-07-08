@@ -17,7 +17,7 @@ public class DeleteHabitServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      String habitName = String.parseString(request.getParameter("habitName"));
+      String habitName = request.getParameter("habitName");
   
       Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
       KeyFactory keyFactory = datastore.newKeyFactory().setKind("Habit");

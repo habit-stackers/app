@@ -15,11 +15,6 @@ import org.jsoup.safety.Whitelist;
 
 @WebServlet("/create-habit")
 public class CreateHabitServlet extends HttpServlet {
-    /*
-        this.habitName = habitName;
-        this.listName = listName;
-    */
-    
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Sanitize user input to remove HTML tags and JavaScript.
