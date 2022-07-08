@@ -1,5 +1,5 @@
 
-package main.java.com.google.sps.servlets;
+package com.google.sps.servlets;
 
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
