@@ -1,4 +1,4 @@
-function loadHabits() {
+function LoadHabits() {
   fetch('/list-habitlist').then(response => response.json()).then((tasks) => {
     const taskListElement = document.getElementById('habitList');
     tasks.forEach((task) => {
