@@ -1,10 +1,23 @@
-function LoadHabits() {
-  fetch('/list-habitlist').then(response => response.json()).then((tasks) => {
-    const taskListElement = document.getElementById('habitList');
-    tasks.forEach((task) => {
-      taskListElement.appendChild(createTaskElement(task));
+
+
+// This is like my main function?
+function loadHabits() {
+  fetch('/list-habitlist').then(response => response.json()).then((habit) => {
+    const habitListElement = document.getElementById('listName');
+    habit.forEach((habit) => {
+      habitListElement.appendChild(createHabitElement(habit));
     })
   });
+}
+
+function createHabitElement(habit) {
+  const habitElement = document.createElement('li');
+  habitElement.className = 'habit';
+
+  const titleElement = document.createElement('span');
+  titleElement.innerText = habit.title;
+
+  
 }
 
 /*
