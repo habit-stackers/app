@@ -21,7 +21,7 @@ import com.google.sps.data.HabitList;
 
 // Servlet responsible for listing tasks. 
 @WebServlet("/list-habitlist")
-public class ListHabitlistServlet extends HttpServlet {
+public class ListHabitListServlet extends HttpServlet {
     
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -39,7 +39,7 @@ public class ListHabitlistServlet extends HttpServlet {
       String listName = entity.getString("listName");
       String username = entity.getString("username");
 
-      HabitList habitList = new HabitList(/*notifyTime,*/ listName, username);
+      HabitList habitList = new HabitList(/*notifyTime,*/ listName);
       habitListList.add(habitList);
     }
 
