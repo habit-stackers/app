@@ -26,7 +26,8 @@ function createHabitElement(habitName) {
   deleteButtonElement.innerHTML = "X";
   deleteButtonElement.addEventListener('click', () => {
     deleteHabit(habitName);
-  })
+    habitElement.remove();
+  });
 
   return habitElement;
 }
