@@ -13,10 +13,9 @@ function loadHabits() {
 }
 
 function createHabitElement(habitName) {
-  var habitNameData = JSON.parse(habitName);
   const habitElement = document.createElement('li');
   habitElement.className = 'habit';
-  habitElement.innerHTML = habitNameData;
+  habitElement.innerHTML = habitName;
 
   //const titleElement = document.createElement('span');
   //titleElement.innerText = habit.title;
