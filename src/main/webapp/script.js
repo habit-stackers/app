@@ -2,7 +2,7 @@
 
 // This is like my main function?
 function loadHabits() {
-  fetch('/list-habitlist').then(response => response.json()).then((habit) => {
+  fetch('/list-habit').then(response => response.json()).then((habit) => {
     const habitListElement = document.getElementById('list-name');
     habit.forEach((habit) => {
       habitListElement.appendChild(createHabitElement(habit));
