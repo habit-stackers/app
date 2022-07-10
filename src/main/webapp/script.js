@@ -6,6 +6,7 @@ function loadHabits() {
     const habitListElement = document.getElementById('list-name');
     habit.forEach((habitName) => {
       habitListElement.appendChild(createHabitElement(habitName));
+      //habitListElement.appendChild(createHabitTick(habitName));
     })
     console.log("Fetch habits");
     console.log(habit);
@@ -14,26 +15,31 @@ function loadHabits() {
 
 function createHabitElement(habitName) {
   habitNameString = JSON.parse(JSON.stringify(habitName.listName));
-  //var str = jsonObject.getString(habitName);
   const habitElement = document.createElement('li');
   habitElement.className = 'habit';
   habitElement.innerHTML = habitNameString;
 
-  //const titleElement = document.createElement('span');
-  //titleElement.innerText = habit.title;
+  const deleteButtonElement = document.createElement('button');
+  deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.addEventListener('click', () => {
+    deleteHabit(habitName);
+  })
 
   return habitElement;
 }
 
+function deleteHabit(habit) {
+  const params = new URLSearchParams();
+  params.append('habitName', habit.habitName);
+  fetch('/delete-habit', {method: 'POST', body: params});
+}
+
+function createHabitTick(habitName) {
+
+}
+
 /*
-form = document.querySelector("#js-form").addEventListener("submit", (event) =>
-{
-  event.preventDefault();
-
-});
-*/
-
-/*let habitItems = [];
+let habitItems = [];
 
 // Create a new habit item based on the text from input
 // Add to habitItems list
