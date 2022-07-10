@@ -13,6 +13,7 @@ function loadHabits() {
 }
 
 function createHabitElement(habitName) {
+  JSON.stringify(habitName);
   const habitElement = document.createElement('li');
   habitElement.className = 'habit';
   habitElement.innerHTML = habitName;
