@@ -3,10 +3,12 @@
 // This is like my main function?
 function loadHabits() {
   fetch('/list-habitlist').then(response => response.json()).then((habit) => {
-    const habitListElement = document.getElementById('listName');
+    const habitListElement = document.getElementById('list-name');
     habit.forEach((habit) => {
       habitListElement.appendChild(createHabitElement(habit));
     })
+    console.log("Fetch habits");
+    console.log(habit);
   });
 }
 
@@ -16,8 +18,6 @@ function createHabitElement(habit) {
 
   const titleElement = document.createElement('span');
   titleElement.innerText = habit.title;
-
-  
 }
 
 /*
