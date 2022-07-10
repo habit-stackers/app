@@ -4,18 +4,19 @@
 function loadHabits() {
   fetch('/list-habit').then(response => response.json()).then((habit) => {
     const habitListElement = document.getElementById('list-name');
-    habit.forEach((habit) => {
-      habitListElement.appendChild(createHabitElement(habit));
+    habit.forEach((habitName) => {
+      habitListElement.appendChild(createHabitElement(habitName));
     })
     console.log("Fetch habits");
     console.log(habit);
   });
 }
 
-function createHabitElement(habit) {
+function createHabitElement(habitName) {
+  var habitNameData = JSON.parse(habitName);
   const habitElement = document.createElement('li');
   habitElement.className = 'habit';
-  habitElement.innerHTML = habit.innerHTML;
+  habitElement.innerHTML = habitNameData;
 
   //const titleElement = document.createElement('span');
   //titleElement.innerText = habit.title;
