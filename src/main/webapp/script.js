@@ -15,7 +15,7 @@ function loadHabits() {
 function createHabitElement(habit) {
   const habitElement = document.createElement('li');
   habitElement.className = 'habit';
-  habitElement.innerText;
+  habitElement.title = habit.innerText;
 
   //const titleElement = document.createElement('span');
   //titleElement.innerText = habit.title;
