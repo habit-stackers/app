@@ -6,3 +6,7 @@ execute this command:
 ```
 mvn package exec:java
 ```
+
+gcloud config set project summer22-sps-40
+
+gcloud app deploy

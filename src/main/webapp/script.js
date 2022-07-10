@@ -18,6 +18,8 @@ function createHabitElement(habit) {
 
   const titleElement = document.createElement('span');
   titleElement.innerText = habit.title;
+
+  return habitListElement;
 }
 
 /*
