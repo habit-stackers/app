@@ -23,7 +23,7 @@ function createHabitElement(habitName) {
   console.log("created delete button?");
   //deleteButtonElement.innerText = 'Delete';
   deleteButtonElement.className = "delete-habit";
-  deleteButtonElement.innerHTML = "X";
+  //deleteButtonElement.innerHTML = "X";
   deleteButtonElement.addEventListener('click', () => {
     deleteHabit(habitName);
     habitElement.remove();
