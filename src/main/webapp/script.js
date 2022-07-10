@@ -19,8 +19,11 @@ function createHabitElement(habitName) {
   habitElement.className = 'habit';
   habitElement.innerHTML = habitNameString;
 
-  const deleteButtonElement = document.getElementById('delete-button');
-  deleteButtonElement.innerText = 'Delete';
+  const deleteButtonElement = document.createElement('button');
+  console.log("created delete button?");
+  //deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.className = "delete-habit js-delete-habit";
+  deleteButtonElement.innerHTML = "X";
   deleteButtonElement.addEventListener('click', () => {
     deleteHabit(habitName);
   })
