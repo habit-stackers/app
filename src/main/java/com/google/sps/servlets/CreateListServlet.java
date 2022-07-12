@@ -18,20 +18,17 @@ import org.jsoup.safety.Whitelist;
 public class CreateListServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+      // Sanitize user input to remove HTML tags and JavaScript.
       String list = Jsoup.clean(request.getParameter("listName"), Whitelist.none());
-
-      //  TODO: Implement uncommented part after function works
-
-      // long timestamp = System.currentTimeMillis();
+      //long timestamp = System.currentTimeMillis();
       String username = Jsoup.clean(request.getParameter("username"), Whitelist.none());
   
       Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-      KeyFactory keyFactory = datastore.newKeyFactory().setKind("ListData");
+      KeyFactory keyFactory = datastore.newKeyFactory().setKind("List");
       FullEntity listEntity =
           Entity.newBuilder(keyFactory.newKey())
               .set("listName", list)
-              // .set("notifyTime", timestamp)
+              //.set("notifyTime", timestamp)
               .set("username", username)
               .build();
       datastore.put(listEntity);

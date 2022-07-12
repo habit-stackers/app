@@ -11,19 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// NOTE: This does not work right now
+//NOTE: This does not work right now
 @WebServlet("/update-habit")
 public class UpdateHabitServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+      String habitName = request.getParameter("habitName");
+  
       Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-      String keyName = "habitName";
-      Key key = datastore.newKeyFactory().setKind("HabitData").newKey(keyName);
-      Entity.Builder entityBuilder = Entity.newBuilder(key);
-
-      // TODO: Figure out how to pass user input here
-      entityBuilder.set("propertyName", "value"); 
-      Entity entity = entityBuilder.build();
-      datastore.put(entity);
+      KeyFactory keyFactory = datastore.newKeyFactory().setKind("Habit");
+      Key habitEntityKey = keyFactory.newKey(habitName);
+      //datastore.put(habitEntityKey);
     }
 }

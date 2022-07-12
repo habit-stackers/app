@@ -20,7 +20,7 @@ public class DeleteHabitServlet extends HttpServlet {
       String habitName = request.getParameter("habitName");
   
       Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-      KeyFactory keyFactory = datastore.newKeyFactory().setKind("HabitData");
+      KeyFactory keyFactory = datastore.newKeyFactory().setKind("Habit");
       Key habitEntityKey = keyFactory.newKey(habitName);
       datastore.delete(habitEntityKey);
     }

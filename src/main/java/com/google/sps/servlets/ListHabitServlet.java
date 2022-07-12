@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.sps.data.ListData;
+import com.google.sps.data.HabitList;
 
 
 // Servlet responsible for listing tasks. 
@@ -27,20 +27,18 @@ public class ListHabitServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
      Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     
-    Query<Entity> query = Query.newEntityQueryBuilder().setKind("HabitData").setOrderBy(OrderBy.desc("habitName")).build();
+    Query<Entity> query = Query.newEntityQueryBuilder().setKind("Habit").setOrderBy(OrderBy.desc("habitName")).build();
     QueryResults<Entity> results = datastore.run(query);
 
-    List<ListData> habitListList = new ArrayList<>();
+    List<HabitList> habitListList = new ArrayList<>();
     while (results.hasNext()) {
       Entity entity = results.next();
-      
-      // TODO: Implement uncommented part after function works
 
-      // TimestampValue notifyTime = entity.get("notifyTime");
-      // String username = entity.getString("username");
+      //TimestampValue notifyTime = entity.get("notifyTime");
       String habitName = entity.getString("habitName");
+      //String username = entity.getString("username");
 
-      ListData habitList = new ListData(/*notifyTime,*/ habitName/* , username*/);
+      HabitList habitList = new HabitList(/*notifyTime,*/ habitName/* , username*/);
       habitListList.add(habitList);
      }
 

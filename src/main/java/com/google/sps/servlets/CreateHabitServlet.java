@@ -17,15 +17,12 @@ import org.jsoup.safety.Whitelist;
 public class CreateHabitServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String habitData = "HabitData";
+    // Sanitize user input to remove HTML tags and JavaScript.
     String habit = Jsoup.clean(request.getParameter("habitName"), Whitelist.none());
-    String list = "Make the bed.";
-    // TODO: Implement list later.
-    // Jsoup.clean(request.getParameter("listName"), Whitelist.none());
+    String list = "Make the bed.";//Jsoup.clean(request.getParameter("listName"), Whitelist.none());
 
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-    KeyFactory keyFactory = datastore.newKeyFactory().setKind("HabitData");
-    
+    KeyFactory keyFactory = datastore.newKeyFactory().setKind("Habit");
     FullEntity habitEntity =
         Entity.newBuilder(keyFactory.newKey())
             .set("habitName", habit)

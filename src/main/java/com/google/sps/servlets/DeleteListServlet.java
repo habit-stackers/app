@@ -1,3 +1,4 @@
+
 package com.google.sps.servlets;
 
 import com.google.cloud.datastore.Datastore;
@@ -10,17 +11,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// TODO: This should have cascading effect to all habits under list
-@WebServlet("/delete-list") 
-public class DeleteListServlet extends HttpServlet {
-    
+/** Servlet responsible for deleting habits. */
+@WebServlet("/delete-habit")
+public class DeleteHabitServlet extends HttpServlet {
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      String listName = request.getParameter("listName");
+      String habitName = request.getParameter("habitName");
   
-      Datastore datastore = DatastoreOptions.getDefaultInstance().getService(); 
-      KeyFactory keyFactory = datastore.newKeyFactory().setKind("ListData"); 
-      Key listEntityKey = keyFactory.newKey(listName);  
-      datastore.delete(listEntityKey);
+      Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+      KeyFactory keyFactory = datastore.newKeyFactory().setKind("Habit");
+      Key habitEntityKey = keyFactory.newKey(habitName);
+      datastore.delete(habitEntityKey);
     }
 }
+  
