@@ -27,7 +27,7 @@ public class ListHabitServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
      Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     
-    Query<Entity> query = Query.newEntityQueryBuilder().setKind("HabitData").setOrderBy(OrderBy.desc("habitName")).build();
+    Query<Entity> query = Query.newEntityQueryBuilder().setKind("HabitList").setOrderBy(OrderBy.desc("habitName")).build();
     QueryResults<Entity> results = datastore.run(query);
 
     List<ListData> habitListList = new ArrayList<>();
