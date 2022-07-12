@@ -23,4 +23,3 @@ public class DeleteListServlet extends HttpServlet {
       datastore.delete(listEntityKey);
     }
 }
-  
