@@ -34,10 +34,10 @@ public class ListHabitServlet extends HttpServlet {
     while (results.hasNext()) {
       Entity entity = results.next();
       
-      //TODO: Implement uncommented part after function works
+      // TODO: Implement uncommented part after function works
 
-      //TimestampValue notifyTime = entity.get("notifyTime");
-      //String username = entity.getString("username");
+      // TimestampValue notifyTime = entity.get("notifyTime");
+      // String username = entity.getString("username");
       String habitName = entity.getString("habitName");
 
       ListData habitList = new ListData(/*notifyTime,*/ habitName/* , username*/);

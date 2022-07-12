@@ -21,9 +21,9 @@ public class CreateListServlet extends HttpServlet {
 
       String list = Jsoup.clean(request.getParameter("listName"), Whitelist.none());
 
-       //TODO: Implement uncommented part after function works
+      //  TODO: Implement uncommented part after function works
 
-      //long timestamp = System.currentTimeMillis();
+      // long timestamp = System.currentTimeMillis();
       String username = Jsoup.clean(request.getParameter("username"), Whitelist.none());
   
       Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
@@ -31,7 +31,7 @@ public class CreateListServlet extends HttpServlet {
       FullEntity listEntity =
           Entity.newBuilder(keyFactory.newKey())
               .set("listName", list)
-              //.set("notifyTime", timestamp)
+              // .set("notifyTime", timestamp)
               .set("username", username)
               .build();
       datastore.put(listEntity);

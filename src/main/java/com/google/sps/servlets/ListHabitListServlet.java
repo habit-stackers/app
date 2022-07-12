@@ -35,9 +35,9 @@ public class ListHabitListServlet extends HttpServlet {
     while (results.hasNext()) {
       Entity entity = results.next();
 
-      //TODO: Implement uncommented part after function works
+      // TODO: Implement uncommented part after function works
 
-      //TimestampValue notifyTime = entity.get("notifyTime");
+      // TimestampValue notifyTime = entity.get("notifyTime");
       String listName = entity.getString("listName");
       String username = entity.getString("username");
 

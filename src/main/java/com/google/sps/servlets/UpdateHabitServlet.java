@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//NOTE: This does not work right now
+// NOTE: This does not work right now
 @WebServlet("/update-habit")
 public class UpdateHabitServlet extends HttpServlet {
     @Override
@@ -21,7 +21,7 @@ public class UpdateHabitServlet extends HttpServlet {
       Key key = datastore.newKeyFactory().setKind("HabitData").newKey(keyName);
       Entity.Builder entityBuilder = Entity.newBuilder(key);
 
-      //TODO: Figure out how to pass user input here
+      // TODO: Figure out how to pass user input here
       entityBuilder.set("propertyName", "value"); 
       Entity entity = entityBuilder.build();
       datastore.put(entity);

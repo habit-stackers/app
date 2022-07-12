@@ -4,8 +4,8 @@ function loadHabits() {
     const habitListElement = document.getElementById('list-name');
     habit.forEach((habitName) => {
       habitListElement.appendChild(createHabitElement(habitName));
-      //TODO: Implement Tick functionality to mark habit as completed
-      //habitListElement.appendChild(createHabitTick(habitName)); 
+      // TODO: Implement Tick functionality to mark habit as completed
+      // habitListElement.appendChild(createHabitTick(habitName)); 
     })
     console.log("Fetch habits");
     console.log(habit);
@@ -18,7 +18,7 @@ function createHabitElement(habitName) {
   habitElement.className = 'habit';
   habitElement.innerHTML = habitNameString;
 
-  //TODO: Delete currently does not work. Neet to fix.
+  // TODO: Delete currently does not work. Neet to fix.
   const deleteButtonElement = document.createElement('button');
   console.log("created delete button?");
   deleteButtonElement.className = "delete-habit";

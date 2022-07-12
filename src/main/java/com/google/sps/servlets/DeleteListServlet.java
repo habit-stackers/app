@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//TODO: This should have cascading effect to all habits under list
+// TODO: This should have cascading effect to all habits under list
 @WebServlet("/delete-list") 
 public class DeleteListServlet extends HttpServlet {
     

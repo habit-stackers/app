@@ -1,11 +1,14 @@
 package com.google.sps.data;
 
-public final class User {
+public final class UserData {
     private final String username;
-    //private final String sessionKey;
 
-    public User(String username/*, String sessionKey*/) {
+    // TODO: Implement commented areas later.
+
+    // private final String sessionKey;
+
+    public UserData(String username/*, String sessionKey*/) {
         this.username = username;
-        //this.sessionKey = sessionKey;
+        // this.sessionKey = sessionKey;
     }
 }

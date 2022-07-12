@@ -3,17 +3,18 @@ package com.google.sps.data;
 
 import com.google.cloud.datastore.TimestampValue;
 
-public final class HabitList {
+public final class ListData {
     
-
-    //private final TimestampValue notifyTime;
+    // TODO: Implement commented areas later.
+    
+    // private final TimestampValue notifyTime;
     private final String listName; // Head of the habit list/The old habit that has new stacked habits
-    //private final String username;
+    // private final String username;
 
-    public HabitList(/*TimestampValue notifyTime,*/ String listName) {
-        //this.notifyTime = notifyTime;
+    public ListData(/*TimestampValue notifyTime,*/ String listName) {
+        // this.notifyTime = notifyTime;
         this.listName = listName;
-        //this.username = username;
+        // this.username = username;
     }
 
 }
