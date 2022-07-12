@@ -19,7 +19,7 @@ public class DeleteHabitServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
       // Obtain the headers required for this route and store into habitNameString
-      String habitNameString = request.getParameter("habitName");
+      String habitNameString = request.getParameter("habitName").toString();
       System.out.println("habitNameString: " + habitNameString);
       System.out.println("request.getParameter(habitName)" + request.getParameter("habitName"));
       System.out.println("request: " + request);
