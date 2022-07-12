@@ -34,7 +34,7 @@ public class ListHabitServlet extends HttpServlet {
     while (results.hasNext()) {
       Entity entity = results.next();
 
-      //TimestampValue notifyTime = entity.get("notifyTime");
+      //TimestampValue notifyTime = entity.get("notifyTime"); a
       String habitName = entity.getString("habitName");
       //String username = entity.getString("username");
 
