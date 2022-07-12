@@ -1,12 +1,11 @@
 
-
-// This is like my main function?
 function loadHabits() {
   fetch('/list-habit').then(response => response.json()).then((habit) => {
     const habitListElement = document.getElementById('list-name');
     habit.forEach((habitName) => {
       habitListElement.appendChild(createHabitElement(habitName));
-      //habitListElement.appendChild(createHabitTick(habitName));
+      //TODO: Implement Tick functionality to mark habit as completed
+      //habitListElement.appendChild(createHabitTick(habitName)); 
     })
     console.log("Fetch habits");
     console.log(habit);
@@ -19,11 +18,10 @@ function createHabitElement(habitName) {
   habitElement.className = 'habit';
   habitElement.innerHTML = habitNameString;
 
+  //TODO: Delete currently does not work. Neet to fix.
   const deleteButtonElement = document.createElement('button');
   console.log("created delete button?");
-  //deleteButtonElement.innerText = 'Delete';
   deleteButtonElement.className = "delete-habit";
-  //deleteButtonElement.innerHTML = "X";
   deleteButtonElement.addEventListener('click', () => {
     deleteHabit(habitName);
     habitElement.remove();
@@ -42,7 +40,9 @@ function createHabitTick(habitName) {
 
 }
 
+// Commented out the basic habit site to implement database version
 /*
+
 let habitItems = [];
 
 // Create a new habit item based on the text from input

@@ -8,6 +8,8 @@ import com.google.cloud.datastore.QueryResults;
 import com.google.cloud.datastore.TimestampValue;
 import com.google.cloud.datastore.StructuredQuery.OrderBy;
 import com.google.gson.Gson;
+import com.google.sps.data.ListData;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +17,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.sps.data.HabitList;
 
 
 // Servlet responsible for listing tasks. 
@@ -28,18 +28,20 @@ public class ListHabitListServlet extends HttpServlet {
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     
     Query<Entity> query =
-        Query.newEntityQueryBuilder().setKind("HabitList").setOrderBy(OrderBy.desc("listName")).build();
+        Query.newEntityQueryBuilder().setKind("ListData").setOrderBy(OrderBy.desc("listName")).build();
     QueryResults<Entity> results = datastore.run(query);
 
-    List<HabitList> habitListList = new ArrayList<>();
+    List<ListData> habitListList = new ArrayList<>();
     while (results.hasNext()) {
       Entity entity = results.next();
+
+      //TODO: Implement uncommented part after function works
 
       //TimestampValue notifyTime = entity.get("notifyTime");
       String listName = entity.getString("listName");
       String username = entity.getString("username");
 
-      HabitList habitList = new HabitList(/*notifyTime,*/ listName);
+      ListData habitList = new ListData(/*notifyTime,*/ listName);
       habitListList.add(habitList);
     }
 

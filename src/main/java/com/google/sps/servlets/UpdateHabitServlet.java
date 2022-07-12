@@ -16,11 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 public class UpdateHabitServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      String habitName = request.getParameter("habitName");
-  
       Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-      KeyFactory keyFactory = datastore.newKeyFactory().setKind("Habit");
-      Key habitEntityKey = keyFactory.newKey(habitName);
-      //datastore.put(habitEntityKey);
+      String keyName = "habitName";
+      Key key = datastore.newKeyFactory().setKind("HabitData").newKey(keyName);
+      Entity.Builder entityBuilder = Entity.newBuilder(key);
+
+      //TODO: Figure out how to pass user input here
+      entityBuilder.set("propertyName", "value"); 
+      Entity entity = entityBuilder.build();
+      datastore.put(entity);
     }
 }

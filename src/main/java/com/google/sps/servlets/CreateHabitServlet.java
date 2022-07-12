@@ -22,7 +22,7 @@ public class CreateHabitServlet extends HttpServlet {
     String list = "Make the bed.";//Jsoup.clean(request.getParameter("listName"), Whitelist.none());
 
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-    KeyFactory keyFactory = datastore.newKeyFactory().setKind("Habit");
+    KeyFactory keyFactory = datastore.newKeyFactory().setKind("HabitData");
     FullEntity habitEntity =
         Entity.newBuilder(keyFactory.newKey())
             .set("habitName", habit)
