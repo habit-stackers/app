@@ -20,7 +20,8 @@ function createHabitElement(habitName) {
   habitElement.innerHTML = habitNameString;
 
   const titleElement = document.createElement('span');
-  titleElement.innerText = task.title;
+  titleElement.innerText = habitName.title;
+  console.log(titleElement);
 
   const deleteButtonElement = document.createElement('button');
   deleteButtonElement.innerText = 'Delete';
