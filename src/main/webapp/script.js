@@ -1,48 +1,52 @@
 
 function loadHabits() {
   fetch('/list-habit').then(response => response.json()).then((habit) => {
+    console.log(habit);
     const habitListElement = document.getElementById('list-name');
-    habit.forEach((habitName) => {
-      habitListElement.appendChild(createHabitElement(habitName));
+    habit.forEach((habitData) => {
+      habitListElement.appendChild(createHabitElement(habitData));
       // TODO: Implement Tick functionality to mark habit as completed
-      // habitListElement.appendChild(createHabitTick(habitName)); 
+      // habitListElement.appendChild(createHabitTick(habitData)); 
     })
     console.log("Fetch habits");
     console.log(habit);
   });
 }
 
-function createHabitElement(habitName) {
-  habitNameString = JSON.parse(JSON.stringify(habitName.listName));
+function createHabitElement(habitData) {
+  habitDataString = JSON.parse(JSON.stringify(habitData.listName));
   const habitElement = document.createElement('li');
   habitElement.className = 'habit';
-  habitElement.innerHTML = habitNameString;
+  habitElement.innerHTML = habitDataString;
 
-  // TODO: Delete currently does not work. Neet to fix.
+  const titleElement = document.createElement('span');
+  titleElement.innerText = task.title;
+
   const deleteButtonElement = document.createElement('button');
-  console.log("created delete button?");
-  deleteButtonElement.className = "delete-habit";
+  deleteButtonElement.innerText = 'Delete';
   deleteButtonElement.addEventListener('click', () => {
-    deleteHabit(habitName);
+    deleteHabit(habit);
     habitElement.remove();
   });
 
+  habitElement.appendChild(titleElement);
+  habitElement.appendChild(deleteButtonElement);
   return habitElement;
 }
 
 function deleteHabit(habit) {
   const params = new URLSearchParams();
-  params.append('habitName', habit.habitName);
+  params.append('habitData', habit.habitData);
   fetch('/delete-habit', {method: 'POST', body: params});
 }
 
-function createHabitTick(habitName) {
+function createHabitTick(habitData) {
 
 }
 
 // Commented out the basic habit site to implement database version
-/*
 
+/*
 let habitItems = [];
 
 // Create a new habit item based on the text from input
