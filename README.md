@@ -7,3 +7,7 @@ execute this command:
 gcloud config set project     summer22-sps-40
 gcloud app deploy
 ```
+
+gcloud config set project summer22-sps-40
+
+gcloud app deploy

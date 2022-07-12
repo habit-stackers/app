@@ -1,3 +1,48 @@
+
+function loadHabits() {
+  fetch('/list-habit').then(response => response.json()).then((habit) => {
+    const habitListElement = document.getElementById('list-name');
+    habit.forEach((habitName) => {
+      habitListElement.appendChild(createHabitElement(habitName));
+      // TODO: Implement Tick functionality to mark habit as completed
+      // habitListElement.appendChild(createHabitTick(habitName)); 
+    })
+    console.log("Fetch habits");
+    console.log(habit);
+  });
+}
+
+function createHabitElement(habitName) {
+  habitNameString = JSON.parse(JSON.stringify(habitName.listName));
+  const habitElement = document.createElement('li');
+  habitElement.className = 'habit';
+  habitElement.innerHTML = habitNameString;
+
+  // TODO: Delete currently does not work. Neet to fix.
+  const deleteButtonElement = document.createElement('button');
+  console.log("created delete button?");
+  deleteButtonElement.className = "delete-habit";
+  deleteButtonElement.addEventListener('click', () => {
+    deleteHabit(habitName);
+    habitElement.remove();
+  });
+
+  return habitElement;
+}
+
+function deleteHabit(habit) {
+  const params = new URLSearchParams();
+  params.append('habitName', habit.habitName);
+  fetch('/delete-habit', {method: 'POST', body: params});
+}
+
+function createHabitTick(habitName) {
+
+}
+
+// Commented out the basic habit site to implement database version
+/*
+
 let habitItems = [];
 
 // Create a new habit item based on the text from input
@@ -125,3 +170,4 @@ function deleteHabit(key) {
   habitItems = habitItems.filter((item) => item.id !== Number(key));
   renderHabit(habit);
 }
+*/

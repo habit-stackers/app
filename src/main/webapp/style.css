@@ -39,7 +39,15 @@ html {
     width: 32px;
     height: 32px;
   }
-  
+
+  .habit {
+
+  }
+  .list-name {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+
   .habit-list {
     list-style: none;
     margin-bottom: 20px;

@@ -1,5 +1,5 @@
 
-package main.java.com.google.sps.servlets;
+package com.google.sps.servlets;
 
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
@@ -14,28 +14,24 @@ import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
-
-/* List Table
-    private final TimeStamp notifyTime;
-    private final string listName;
-    private final string username;
-*/
-
 @WebServlet("/create-list")
 public class CreateListServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      // Sanitize user input to remove HTML tags and JavaScript.
+
       String list = Jsoup.clean(request.getParameter("listName"), Whitelist.none());
-      long timestamp = System.currentTimeMillis();
+
+      //  TODO: Implement uncommented part after function works
+
+      // long timestamp = System.currentTimeMillis();
       String username = Jsoup.clean(request.getParameter("username"), Whitelist.none());
   
       Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-      KeyFactory keyFactory = datastore.newKeyFactory().setKind("List");
+      KeyFactory keyFactory = datastore.newKeyFactory().setKind("ListData");
       FullEntity listEntity =
           Entity.newBuilder(keyFactory.newKey())
               .set("listName", list)
-              .set("notifyTime", timestamp)
+              // .set("notifyTime", timestamp)
               .set("username", username)
               .build();
       datastore.put(listEntity);

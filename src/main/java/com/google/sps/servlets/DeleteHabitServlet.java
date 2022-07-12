@@ -1,5 +1,5 @@
 
-package main.java.com.google.sps.servlets;
+package com.google.sps.servlets;
 
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
@@ -17,10 +17,10 @@ public class DeleteHabitServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      String habitName = String.parseString(request.getParameter("habitName"));
+      String habitName = request.getParameter("habitName");
   
       Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-      KeyFactory keyFactory = datastore.newKeyFactory().setKind("Habit");
+      KeyFactory keyFactory = datastore.newKeyFactory().setKind("HabitData");
       Key habitEntityKey = keyFactory.newKey(habitName);
       datastore.delete(habitEntityKey);
     }
