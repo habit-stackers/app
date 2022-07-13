@@ -1,4 +1,3 @@
-
 function loadHabits() {
   fetch('/display-habit').then(response => response.json()).then((habitJson) => {
     const habitListElement = document.getElementById('habit-name');
@@ -19,11 +18,11 @@ function createHabitElement(habitJson) {
   // Create <li> elements for each habit
   const habitElement = document.createElement('li');
   habitElement.className = 'habit';
-  habitElement.innerHTML = " ";
+  habitElement.innerHTML = habitNameString;
 
   // Create <span> elements for each habit
   const titleElement = document.createElement('span');
-  titleElement.innerText = habitNameString.title;
+  titleElement.innerText = " ";
 
   // Create delete <button> elements for each habit 
   const deleteButtonElement = document.createElement('button');
@@ -39,6 +38,28 @@ function createHabitElement(habitJson) {
   return habitElement;
 }
   // TODO: Delete currently does not work. Neet to fix.
+  //const deleteButtonElement = document.createElement('button');
+  //console.log("created delete button?");
+  //deleteButtonElement.className = "delete-habit";
+  //deleteButtonElement.addEventListener('click', () => {
+  //  deleteHabit(habit);
+  //  habitElement.remove();
+  //});
+
+  /*
+    const titleElement = document.createElement('span');
+    titleElement.innerText = habitName.title;
+    console.log(titleElement);
+    const deleteButtonElement = document.createElement('button');
+    deleteButtonElement.innerText = 'Delete';
+    deleteButtonElement.addEventListener('click', () => {
+      deleteHabit(habit);
+      habitElement.remove();
+    });
+    habitElement.appendChild(titleElement);
+    habitElement.appendChild(deleteButtonElement);
+  */
+
 
 function deleteHabit(habit) {
   const params = new URLSearchParams();
@@ -52,9 +73,7 @@ function createHabitTick(habitName) {
 
 // Commented out the basic habit site to implement database version
 /*
-
 let habitItems = [];
-
 // Create a new habit item based on the text from input
 // Add to habitItems list
 function addHabit(text) {
@@ -63,11 +82,9 @@ function addHabit(text) {
     checked: false,
     id: Date.now(),
   };
-
   habitItems.push(habit);
   renderHabit(habit);
 }
-
 // Select the from element
 form = document.querySelector("#js-form");
 // Submit event listener
@@ -77,10 +94,8 @@ form.addEventListener("submit", (event) => {
   console.log("Received submit event from form...");
   //prevent page from refreshing when form submitted
   event.preventDefault();
-
   // Select text input
   input = document.querySelector("#js-habit-input");
-
   // Process input
   // Remove whitespace
   text = input.value.trim();
@@ -92,20 +107,17 @@ form.addEventListener("submit", (event) => {
     input.focus();
   }
 });
-
 function renderHabit(habit) {
   // Select list item in html
   const list = document.querySelector("#js-habit-list");
   // Check if habit is in DOM already
   const item = document.querySelector(`[data-key = '${habit.id}']`);
-
   // If delete is called
   // Remove item
   if (habit.deleted) {
     item.remove();
     return;
   }
-
   // See if habit is checked
   const isChecked = habit.checked ? "done" : "";
   // Create an `li` element and assign it to `node`
@@ -113,25 +125,19 @@ function renderHabit(habit) {
   // Set the class attribute
   node.setAttribute("class", `habit-item ${isChecked}`);
   node.setAttribute("data-key", habit.id);
-
   // Set the contents of the li element
   const checkbox = document.createElement("input");
   checkbox.id = habit.id;
   checkbox.type = "checkbox";
-
   const tick = document.createElement("label");
   tick.setAttribute("for", `${habit.id}`);
   tick.className = "tick js-tick";
-
   const text = document.createElement("span");
   text.innerText = habit.text;
-
   const del = document.createElement("button");
   del.className = "delete-habit js-delete-habit";
   del.innerHTML = "X";
-
   node.append(checkbox, tick, text, del);
-
   // If item already in DOM
   if (item) {
     list.replaceChild(node, item);
@@ -139,7 +145,6 @@ function renderHabit(habit) {
     list.append(node);
   }
 }
-
 // Mark a habit as done
 const list = document.querySelector("#js-habit-list");
 list.addEventListener("click", (event) => {
@@ -149,7 +154,6 @@ list.addEventListener("click", (event) => {
     console.log("ticking...");
     toggleDone(itemKey);
   }
-
   // Detele items
   if (event.target.classList.contains("delete-habit")) {
     const itemKey = event.target.parentElement.dataset.key;
@@ -157,7 +161,6 @@ list.addEventListener("click", (event) => {
     deleteHabit(itemKey);
   }
 });
-
 // Toggle done icon of a habit based on key value
 function toggleDone(key) {
   // Find index of this habit based on key
@@ -166,11 +169,9 @@ function toggleDone(key) {
   habitItems[index].checked = !habitItems[index].checked;
   renderHabit(habitItems[index]);
 }
-
 function deleteHabit(key) {
   // Find index of this habit based on key
   const index = habitItems.findIndex((item) => item.id === Number(key));
-
   // Create a new object with same property to current to item but with deleted as true
   const habit = {
     deleted: true,
