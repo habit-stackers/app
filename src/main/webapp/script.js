@@ -1,11 +1,50 @@
 
 function loadHabits() {
+  fetch('/display-list').then(response => response.json()).then((listJson) => {
+    const listElement = document.getElementById('list-name');
+    listJson.forEach((listJson) => {
+      listElement.appendChild(createListElement(listJson));
+    });
+    console.log(listJson);
+  });
+}
+
+function createListElement(listJson) {
+    // Convert Habit JSON Object to String (without the single quote)
+    var listNameString = JSON.parse(JSON.stringify(listJson.listName));
+    console.log("listNameString:" + listNameString);
+  
+    // Create <li> elements for each habit
+    const listElement = document.createElement('li');
+    listElement.className = 'list';
+    listElement.innerHTML = listNameString;
+  
+    // Create <span> elements for each habit
+    const titleElement = document.createElement('span');
+    titleElement.innerText = "\t\t";
+  
+    // Create delete <button> elements for each habit 
+    const deleteButtonElement = document.createElement('button');
+    deleteButtonElement.innerText = 'Delete';
+    deleteButtonElement.addEventListener('click', () => {
+      deleteList(listJson);
+      console.log("listNameString:" + listNameString);
+      console.log("listJson:" + listJson);
+      listElement.remove();
+    })
+  
+    listElement.appendChild(titleElement);
+    listElement.appendChild(deleteButtonElement);
+    return listElement;
+}
+
+function fetchHabits() {
   fetch('/display-habit').then(response => response.json()).then((habitJson) => {
-    const habitListElement = document.getElementById('habit-name');
+    const habitElement = document.getElementById('habit-name');
     habitJson.forEach((habitJson) => {
-      habitListElement.appendChild(createHabitElement(habitJson));
+      habitElement.appendChild(createHabitElement(habitJson));
       // TODO: Implement Tick functionality to mark habit as completed
-      // habitListElement.appendChild(createHabitTick(habitName)); 
+      // habitElement.appendChild(createHabitTick(habitName)); 
     })
     console.log("Fetch habits");
     console.log(habitJson);
@@ -45,6 +84,12 @@ function deleteHabit(habitJson) {
   const params = new URLSearchParams();
   params.append('habitName', habitJson.habitName);
   fetch('/delete-habit', {method: 'POST', body: params});
+}
+
+function deleteList(listJson) {
+  const params = new URLSearchParams();
+  params.append('listName', listJson.listName);
+  fetch('/delete-list', {method: 'POST', body: params});
 }
   // TODO: Delete currently does not work. Neet to fix.
   //const deleteButtonElement = document.createElement('button');
