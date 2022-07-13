@@ -24,7 +24,7 @@ function createHabitElement(habitJson) {
 
   // Create <span> elements for each habit
   const titleElement = document.createElement('span');
-  titleElement.innerText = " ";
+  titleElement.innerText = "\t\t";
 
   // Create delete <button> elements for each habit 
   const deleteButtonElement = document.createElement('button');
