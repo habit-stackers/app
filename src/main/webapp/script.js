@@ -15,7 +15,6 @@ function loadHabits() {
 function createHabitElement(habitJson) {
   // Convert Habit JSON Object to String (without the single quote)
   var habitNameString = JSON.parse(JSON.stringify(habitJson.habitName));
-  console.log("habitNameString:" + habitNameString);
 
   // Create <li> elements for each habit
   const habitElement = document.createElement('li');
@@ -24,27 +23,20 @@ function createHabitElement(habitJson) {
 
   // Create <span> elements for each habit
   const titleElement = document.createElement('span');
-  titleElement.tabIndex = 2;
+  titleElement.innerText = "                    ";
 
   // Create delete <button> elements for each habit 
   const deleteButtonElement = document.createElement('button');
   deleteButtonElement.innerText = 'Delete';
   deleteButtonElement.addEventListener('click', () => {
-    deleteHabit(habitJson);
-    console.log("habitNameString:" + habitNameString);
-    console.log("habitJson:" + habitJson);
+    deleteHabit(habitNameString);
+    console.log(habitNameString);
     habitElement.remove();
   })
 
   habitElement.appendChild(titleElement);
   habitElement.appendChild(deleteButtonElement);
   return habitElement;
-}
-
-function deleteHabit(habitJson) {
-  const params = new URLSearchParams();
-  params.append('habitName', habitJson.habitName);
-  fetch('/delete-habit', {method: 'POST', body: params});
 }
   // TODO: Delete currently does not work. Neet to fix.
   //const deleteButtonElement = document.createElement('button');
@@ -72,7 +64,11 @@ function deleteHabit(habitJson) {
   */
 
 
-
+function deleteHabit(habit) {
+  const params = new URLSearchParams();
+  params.append('habitName', habit.habitName);
+  fetch('/delete-habit', {method: 'POST', body: params});
+}
 
 function createHabitTick(habitName) {
 
