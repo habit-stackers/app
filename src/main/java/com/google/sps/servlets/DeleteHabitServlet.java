@@ -31,17 +31,21 @@ public class DeleteHabitServlet extends HttpServlet {
       // Create a key for the header
 
       Key habitEntityKey = keyFactory.newKey(habitNameString);
-      System.out.println("habitEntityKey: " + habitEntityKey);
+      System.out.println("before-habitEntityKey: " + habitEntityKey);
 
       //Uses the key to delete the header
       datastore.delete(habitEntityKey);
+      System.out.println("after-habitEntityKey: " + habitEntityKey);
 
       /*
-          long id = Long.parseLong(request.getParameter("id"));
-          Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-          KeyFactory keyFactory = datastore.newKeyFactory().setKind("Task");
-          Key taskEntityKey = keyFactory.newKey(id);
-          datastore.delete(taskEntityKey);
+        Key taskKey = datastore.newKeyFactory().setKind("Task").newKey("sampleTask");
+        Entity task =
+            Entity.newBuilder(taskKey)
+                .set("category", "Personal")
+                .set("done", false)
+                .set("priority", 4)
+                .set("description", "Learn Cloud Datastore")
+                .build();
        */
     }
 }
