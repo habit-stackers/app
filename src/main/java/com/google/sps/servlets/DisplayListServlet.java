@@ -28,10 +28,10 @@ public class DisplayListServlet extends HttpServlet {
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     
     Query<Entity> query =
-        Query.newEntityQueryBuilder().setKind("ListData").setOrderBy(OrderBy.desc("listName")).build();
+        Query.newEntityQueryBuilder().setKind("ListData")/*.setOrderBy(OrderBy.desc("listName"))*/.build();
     QueryResults<Entity> results = datastore.run(query);
 
-    List<ListData> habitListList = new ArrayList<>();
+    List<ListData> newListData = new ArrayList<>();
     while (results.hasNext()) {
       Entity entity = results.next();
 
@@ -42,13 +42,13 @@ public class DisplayListServlet extends HttpServlet {
       String username = entity.getString("username");
       
 
-      ListData habitList = new ListData(/*notifyTime, */listName, username);
-      habitListList.add(habitList);
+      ListData listData = new ListData(/*notifyTime, */listName, username);
+      newListData.add(listData);
     }
 
     Gson gson = new Gson();
 
     response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(habitListList));
+    response.getWriter().println(gson.toJson(newListData));
   }
 }
