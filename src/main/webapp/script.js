@@ -39,7 +39,7 @@ function createListElement(listJson) {
 
 function fetchHabits() {
   fetch('/display-habit').then(response => response.json()).then((habitJson) => {
-    const habitElement = document.getElementById('habit-name');
+    const habitElement = document.getElementById('list-name');
     habitJson.forEach((habitJson) => {
       habitElement.appendChild(createHabitElement(habitJson));
       // TODO: Implement Tick functionality to mark habit as completed
