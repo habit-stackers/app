@@ -37,29 +37,6 @@ function createHabitElement(habitJson) {
   habitElement.appendChild(deleteButtonElement);
   return habitElement;
 }
-  // TODO: Delete currently does not work. Neet to fix.
-  //const deleteButtonElement = document.createElement('button');
-  //console.log("created delete button?");
-  //deleteButtonElement.className = "delete-habit";
-  //deleteButtonElement.addEventListener('click', () => {
-  //  deleteHabit(habit);
-  //  habitElement.remove();
-  //});
-
-  /*
-    const titleElement = document.createElement('span');
-    titleElement.innerText = habitName.title;
-    console.log(titleElement);
-    const deleteButtonElement = document.createElement('button');
-    deleteButtonElement.innerText = 'Delete';
-    deleteButtonElement.addEventListener('click', () => {
-      deleteHabit(habit);
-      habitElement.remove();
-    });
-    habitElement.appendChild(titleElement);
-    habitElement.appendChild(deleteButtonElement);
-  */
-
 
 function deleteHabit(habit) {
   const params = new URLSearchParams();
