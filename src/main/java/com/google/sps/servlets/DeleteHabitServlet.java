@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet responsible for deleting habits. */
+// This servlet deletes a habit by passing a header of type habitName 
 @WebServlet("/delete-habit")
 public class DeleteHabitServlet extends HttpServlet {
 

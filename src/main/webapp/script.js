@@ -1,34 +1,67 @@
 
 function loadHabits() {
-  fetch('/display-habit').then(response => response.json()).then((habit) => {
+  fetch('/display-habit').then(response => response.json()).then((habitJson) => {
     const habitListElement = document.getElementById('habit-name');
-    habit.forEach((habitName) => {
-      habitListElement.appendChild(createHabitElement(habitName));
+    habitJson.forEach((habitJson) => {
+      habitListElement.appendChild(createHabitElement(habitJson));
       // TODO: Implement Tick functionality to mark habit as completed
       // habitListElement.appendChild(createHabitTick(habitName)); 
     })
     console.log("Fetch habits");
-    console.log(habit);
+    console.log(habitJson);
   });
 }
 
-function createHabitElement(habitName) {
-  habitNameString = JSON.parse(JSON.stringify(habitName.listName));
+function createHabitElement(habitJson) {
+  // Convert Habit JSON Object to String (without the single quote)
+  var habitNameString = JSON.parse(JSON.stringify(habitJson.habitName));
+
+  // Create <li> elements for each habit
   const habitElement = document.createElement('li');
   habitElement.className = 'habit';
   habitElement.innerHTML = habitNameString;
 
-  // TODO: Delete currently does not work. Neet to fix.
-  const deleteButtonElement = document.createElement('button');
-  console.log("created delete button?");
-  deleteButtonElement.className = "delete-habit";
-  deleteButtonElement.addEventListener('click', () => {
-    deleteHabit(habitName);
-    habitElement.remove();
-  });
+  // Create <span> elements for each habit
+  const titleElement = document.createElement('span');
+  titleElement.innerText = habit.title;
 
+  // Create delete <button> elements for each habit 
+  const deleteButtonElement = document.createElement('button');
+  deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.addEventListener('click', () => {
+    deleteHabit(habitNameString);
+    habitElement.remove();
+  })
+
+  habitElement.appendChild(titleElement);
+  habitElement.appendChild(deleteButtonElement);
   return habitElement;
 }
+  // TODO: Delete currently does not work. Neet to fix.
+  //const deleteButtonElement = document.createElement('button');
+  //console.log("created delete button?");
+  //deleteButtonElement.className = "delete-habit";
+  //deleteButtonElement.addEventListener('click', () => {
+  //  deleteHabit(habit);
+  //  habitElement.remove();
+  //});
+
+  /*
+    const titleElement = document.createElement('span');
+    titleElement.innerText = habitName.title;
+    console.log(titleElement);
+
+    const deleteButtonElement = document.createElement('button');
+    deleteButtonElement.innerText = 'Delete';
+    deleteButtonElement.addEventListener('click', () => {
+      deleteHabit(habit);
+      habitElement.remove();
+    });
+
+    habitElement.appendChild(titleElement);
+    habitElement.appendChild(deleteButtonElement);
+  */
+
 
 function deleteHabit(habit) {
   const params = new URLSearchParams();
