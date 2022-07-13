@@ -26,16 +26,20 @@ public class DeleteHabitServlet extends HttpServlet {
       Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
 
       //
-      KeyFactory keyFactory = datastore.newKeyFactory().setKind("HabitData");
-      System.out.println("keyFactory: " + keyFactory);
+      //KeyFactory keyFactory = datastore.newKeyFactory().setKind("HabitData");
+      Key key = datastore.newKeyFactory().setKind("HabitData").newKey(habitNameString);
+      //System.out.println("keyFactory: " + keyFactory);
       // Create a key for the header
 
-      Key habitEntityKey = keyFactory.newKey(habitNameString);
-      System.out.println("before-habitEntityKey: " + habitEntityKey);
+      //Key habitEntityKey = keyFactory.newKey(habitNameString);
+      //System.out.println("before-habitEntityKey: " + habitEntityKey);
+
+      String keyName2 = "my_key_name2";
+      //Key key1 = datastore.newKeyFactory().setKind("MyKind").newKey(keyName1);
 
       //Uses the key to delete the header
-      datastore.delete(habitEntityKey);
-      System.out.println("after-habitEntityKey: " + habitEntityKey);
+      datastore.delete(key);
+      System.out.println("key: " + key);
 
       /*
         Key taskKey = datastore.newKeyFactory().setKind("Task").newKey("sampleTask");
@@ -46,6 +50,15 @@ public class DeleteHabitServlet extends HttpServlet {
                 .set("priority", 4)
                 .set("description", "Learn Cloud Datastore")
                 .build();
+
+
+
+        long id = Long.parseLong(request.getParameter("id"));
+
+        Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+        KeyFactory keyFactory = datastore.newKeyFactory().setKind("Task");
+        Key taskEntityKey = keyFactory.newKey(id);
+        datastore.delete(taskEntityKey);
        */
     }
 }
