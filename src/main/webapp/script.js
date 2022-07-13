@@ -1,7 +1,7 @@
 
 function loadHabits() {
-  fetch('/list-habit').then(response => response.json()).then((habit) => {
-    const habitListElement = document.getElementById('list-name');
+  fetch('/display-habit').then(response => response.json()).then((habit) => {
+    const habitListElement = document.getElementById('habit-name');
     habit.forEach((habitName) => {
       habitListElement.appendChild(createHabitElement(habitName));
       // TODO: Implement Tick functionality to mark habit as completed

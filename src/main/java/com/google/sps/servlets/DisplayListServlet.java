@@ -19,9 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-// Servlet responsible for listing tasks. 
-@WebServlet("/list-habitlist")
-public class ListHabitListServlet extends HttpServlet {
+// This servlet iterates through ListData to display all lists of a user. 
+@WebServlet("/display-list")
+public class DisplayListServlet extends HttpServlet {
     
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -37,11 +37,12 @@ public class ListHabitListServlet extends HttpServlet {
 
       // TODO: Implement uncommented part after function works
 
-      // TimestampValue notifyTime = entity.get("notifyTime");
+      //TimestampValue notifyTime = entity.get("notifyTime");
       String listName = entity.getString("listName");
       String username = entity.getString("username");
+      
 
-      ListData habitList = new ListData(/*notifyTime,*/ listName);
+      ListData habitList = new ListData(/*notifyTime, */listName, username);
       habitListList.add(habitList);
     }
 
