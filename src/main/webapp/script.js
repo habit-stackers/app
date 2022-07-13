@@ -15,6 +15,7 @@ function loadHabits() {
 function createHabitElement(habitJson) {
   // Convert Habit JSON Object to String (without the single quote)
   var habitNameString = JSON.parse(JSON.stringify(habitJson.habitName));
+  console.log("habitNameString:" + habitNameString);
 
   // Create <li> elements for each habit
   const habitElement = document.createElement('li');
