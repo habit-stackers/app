@@ -19,35 +19,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-// Servlet responsible for listing tasks. 
-@WebServlet("/list-habitlist")
-public class ListHabitListServlet extends HttpServlet {
+// This servlet iterates through ListData to display all lists of a user. 
+@WebServlet("/display-list")
+public class DisplayListServlet extends HttpServlet {
     
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     
     Query<Entity> query =
-        Query.newEntityQueryBuilder().setKind("ListData").setOrderBy(OrderBy.desc("listName")).build();
+        Query.newEntityQueryBuilder().setKind("ListData")/*.setOrderBy(OrderBy.desc("listName"))*/.build();
     QueryResults<Entity> results = datastore.run(query);
 
-    List<ListData> habitListList = new ArrayList<>();
+    List<ListData> newListData = new ArrayList<>();
     while (results.hasNext()) {
       Entity entity = results.next();
 
       // TODO: Implement uncommented part after function works
 
-      // TimestampValue notifyTime = entity.get("notifyTime");
+      //TimestampValue notifyTime = entity.get("notifyTime");
       String listName = entity.getString("listName");
       String username = entity.getString("username");
+      
 
-      ListData habitList = new ListData(/*notifyTime,*/ listName);
-      habitListList.add(habitList);
+      ListData listData = new ListData(/*notifyTime, */listName, username);
+      newListData.add(listData);
     }
 
     Gson gson = new Gson();
 
     response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(habitListList));
+    response.getWriter().println(gson.toJson(newListData));
   }
 }
