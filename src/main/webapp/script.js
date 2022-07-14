@@ -30,7 +30,7 @@ function createHabitElement(habitJson) {
   // Create <li> elements for each habit
   const habitElement = document.createElement('li');
   habitElement.className = 'habit';
-  habitElement.innerHTML = habitNameString;
+  habitElement.innerHTML = habitJson.habitName;
 
   // Create <span> elements for each habit
   const titleElement = document.createElement('span');
@@ -41,9 +41,10 @@ function createHabitElement(habitJson) {
   deleteButtonElement.className = "delete";  
   deleteButtonElement.innerText = 'X';
   deleteButtonElement.addEventListener('click', () => {
-    deleteHabit(habitNameString);
+    deleteHabit(habitJson);
     console.log(habitNameString);
-    habitElement.remove();
+    loadHabits();
+    //habitElement.remove();
   })
 
   habitElement.appendChild(titleElement);
@@ -53,8 +54,8 @@ function createHabitElement(habitJson) {
 
 function deleteHabit(habit) {
   const params = new URLSearchParams();
-  params.append('habitName', habit);
-  console.log(params);
+  params.append('id', habit.id);
+  console.log(params.id);
   fetch('/delete-habit', {method: 'POST', body: params});
 }
 

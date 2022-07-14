@@ -39,12 +39,13 @@ public class DisplayHabitServlet extends HttpServlet {
       Entity entity = results.next();
       
       // Obtain the attributes with their specific parameter names
+      long id = entity.getKey().getId();
       String listName = entity.getString("listName");
       String habitName = entity.getString("habitName");
       Boolean isComplete = entity.getBoolean("isComplete");
 
       // Create new Entity using the obtained attribute values
-      HabitData habitList = new HabitData(habitName, listName, isComplete);
+      HabitData habitList = new HabitData(id, habitName, listName, isComplete);
 
       // Add to the HabitList List Object
       newHabitList.add(habitList);
