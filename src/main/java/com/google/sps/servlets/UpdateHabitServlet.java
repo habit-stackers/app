@@ -5,6 +5,8 @@ import com.google.cloud.datastore.DatastoreOptions;
 import com.google.cloud.datastore.Entity;
 import com.google.cloud.datastore.Key;
 import com.google.cloud.datastore.KeyFactory;
+import com.google.cloud.datastore.Transaction;
+
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,11 +18,19 @@ import javax.servlet.http.HttpServletResponse;
 public class UpdateHabitServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      String habitName = request.getParameter("habitName");
-  
-      Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-      KeyFactory keyFactory = datastore.newKeyFactory().setKind("Habit");
-      Key habitEntityKey = keyFactory.newKey(habitName);
-      //datastore.put(habitEntityKey);
+        long id = Long.parseLong(request.getParameter("id"));
+
+        Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+       
+        KeyFactory keyFactory = datastore.newKeyFactory().setKind("HabitData");  
+        Key habitEntityKey = keyFactory.newKey(id);
+
+        Transaction transaction = datastore.newTransaction();
+          Entity task = transaction.get(habitEntityKey);
+          if (task != null) {
+            transaction.put(Entity.newBuilder(task).set("isComplete", true).build());
+          }
+          transaction.commit();
+
     }
 }
