@@ -25,9 +25,9 @@ public class DeleteHabitServlet extends HttpServlet {
         KeyFactory keyFactory = datastore.newKeyFactory().setKind("HabitData");
         Key habitEntityKey = keyFactory.newKey(id);
 
-        System.out.println("before-habitEntityKey: " + habitEntityKey);
+        //System.out.println("before-habitEntityKey: " + habitEntityKey);
         datastore.delete(habitEntityKey);
-        System.out.println("after-habitEntityKey: " + habitEntityKey);
+        //System.out.println("after-habitEntityKey: " + habitEntityKey);
         /*
       // Obtain the headers required for this route and store into habitNameString
       String habitNameString = request.getParameter("habitName").toString();

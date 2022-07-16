@@ -11,7 +11,7 @@ function loadHabits() {
     });
   }
 
-function reloadHabits() {
+/*function reloadHabits() {
     fetch('/display-habit').then(response => response.json()).then((habitJson) => {
       const habitListElement = document.getElementById('create-habit-name');
       habitJson.forEach((habitJson) => {
@@ -22,7 +22,7 @@ function reloadHabits() {
       console.log("Fetch habits");
       console.log(habitJson);
     });
-  }
+}*/
 function createHabitElement(habitJson) {
 
   // Create <li> elements for each habit
