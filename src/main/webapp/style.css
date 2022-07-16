@@ -40,6 +40,10 @@ svg {
   height: 32px;
 }
 
+.button-id {
+  padding: 5%;
+}
+
 .create-habit-name {
   margin-bottom: 10px;
   width: 100%;
