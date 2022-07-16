@@ -43,9 +43,8 @@ function createHabitElement(habitJson) {
   deleteButtonElement.addEventListener('click', () => {
     deleteHabit(habitJson);
     console.log(habitNameString);
-    habitJson.remove();
     loadHabits();
-    //habitElement.remove();
+    habitElement.remove();
   })
 
   habitElement.appendChild(titleElement);
@@ -116,6 +115,13 @@ function toggleDone(habit) {
   }
 function createHabitTick(habitName) {
 
+}
+
+function toggleNotDone(habit) {
+  const params = new URLSearchParams();
+  params.append('id', habit.id);
+  console.log("calling update servlet");
+  fetch('/update-habit', {method: 'POST', body: params});
 }
 
 /*
