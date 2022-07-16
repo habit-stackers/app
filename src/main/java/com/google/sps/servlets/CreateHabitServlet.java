@@ -1,5 +1,6 @@
 package com.google.sps.servlets;
 
+import com.google.cloud.Timestamp;
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
 import com.google.cloud.datastore.Entity;
@@ -28,6 +29,7 @@ public class CreateHabitServlet extends HttpServlet {
             .set("habitName", habit)
             .set("listName", list)
             .set("isComplete",false)
+            .set("timeCreated", Timestamp.now())
             .build();
     datastore.put(habitEntity);
 
