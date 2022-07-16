@@ -46,6 +46,7 @@ svg {
 
 .delete {
   float: right;
+  padding: 10%;
 }
 
 .list-name {
