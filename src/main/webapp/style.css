@@ -39,7 +39,9 @@ svg {
   width: 32px;
   height: 32px;
 }
-
+.create-habit-form {
+  margin: 1%;
+}
 .habit {
 
 }
