@@ -30,7 +30,7 @@ public class DisplayHabitServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
      Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     
-    Query<Entity> query = Query.newEntityQueryBuilder().setKind("HabitData").setOrderBy(OrderBy.desc("timeCreated")).build();
+    Query<Entity> query = Query.newEntityQueryBuilder().setKind("HabitData").setOrderBy(OrderBy.asc("timeCreated")).build();
     QueryResults<Entity> results = datastore.run(query);
 
     // Create a List object of type HabitData
