@@ -121,6 +121,10 @@ input[type="checkbox"] {
   display: none;
 }
 
+.tick:hover {
+  background-color: gray;
+}
+
 .done .tick::before {
   display: inline;
 }
