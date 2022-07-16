@@ -27,10 +27,11 @@ function createHabitElement(habitJson) {
   // Convert Habit JSON Object to String (without the single quote)
   var habitNameString = JSON.parse(JSON.stringify(habitJson.habitName));
 
+
+
+  
   // Create <li> elements for each habit
   const habitElement = document.createElement('li');
-  habitElement.className = 'habit';
-  habitElement.innerHTML = habitJson.habitName;
 
   // Create <span> elements for each habit
   const titleElement = document.createElement('span');
