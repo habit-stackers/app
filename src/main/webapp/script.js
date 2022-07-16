@@ -43,6 +43,7 @@ function createHabitElement(habitJson) {
   deleteButtonElement.addEventListener('click', () => {
     deleteHabit(habitJson);
     console.log(habitNameString);
+    habitJson.remove();
     loadHabits();
     //habitElement.remove();
   })
