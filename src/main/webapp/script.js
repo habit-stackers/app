@@ -24,8 +24,6 @@ function reloadHabits() {
     });
   }
 function createHabitElement(habitJson) {
-  // Convert Habit JSON Object to String (without the single quote)
-  var habitNameString = JSON.parse(JSON.stringify(habitJson.habitName));
 
   // Create <li> elements for each habit
   const habitElement = document.createElement('li');
@@ -42,7 +40,7 @@ function createHabitElement(habitJson) {
   deleteButtonElement.innerText = 'X';
   deleteButtonElement.addEventListener('click', () => {
     deleteHabit(habitJson);
-    console.log(habitNameString);
+    console.log(habitJson.habitName);
     loadHabits();
     habitElement.remove();
   })
@@ -60,14 +58,9 @@ function deleteHabit(habit) {
 }
 
 function loadHabitElement(habitJson) {
-    // Convert Habit JSON Object to String (without the single quote)
-    var habitNameString = JSON.parse(JSON.stringify(habitJson.habitName));
-    
     const done = habitJson.isComplete ? "done" : "";
     // Create <li> elements for each habit
     const habitElement = document.createElement('li');
-    //habitElement.className = 'habit';
-    //habitElement.innerHTML = habitJson.habitName;
     habitElement.setAttribute("class", `habit-item ${done}`);
     habitElement.setAttribute("data-key", habitJson.id);
   
@@ -90,7 +83,15 @@ function loadHabitElement(habitJson) {
             console.log("ticking...");
             location.reload();
         }
+    })
 
+    tick.addEventListener("click", () => {
+        if (done) 
+        {
+          toggleNotDone(habitJson);
+          console.log("unticking...");
+          location.reload();
+        }
     })
   
     habitElement.appendChild(titleElement);
