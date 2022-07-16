@@ -18,6 +18,17 @@ public class DeleteHabitServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    
+        long id = Long.parseLong(request.getParameter("id"));
+
+        Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+        KeyFactory keyFactory = datastore.newKeyFactory().setKind("HabitData");
+        Key habitEntityKey = keyFactory.newKey(id);
+
+        System.out.println("before-habitEntityKey: " + habitEntityKey);
+        datastore.delete(habitEntityKey);
+        System.out.println("after-habitEntityKey: " + habitEntityKey);
+        /*
       // Obtain the headers required for this route and store into habitNameString
       String habitNameString = request.getParameter("habitName").toString();
       System.out.println("habitNameString: " + habitNameString);
@@ -36,7 +47,6 @@ public class DeleteHabitServlet extends HttpServlet {
 
       //Uses the key to delete the header
       datastore.delete(habitEntityKey);
-      System.out.println("after-habitEntityKey: " + habitEntityKey);
+      System.out.println("after-habitEntityKey: " + habitEntityKey);*/
     }
 }
-  

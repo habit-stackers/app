@@ -1,16 +1,28 @@
 function loadHabits() {
-  fetch('/display-habit').then(response => response.json()).then((habitJson) => {
-    const habitListElement = document.getElementById('habit-name');
-    habitJson.forEach((habitJson) => {
-      habitListElement.appendChild(createHabitElement(habitJson));
-      // TODO: Implement Tick functionality to mark habit as completed
-      // habitListElement.appendChild(createHabitTick(habitName)); 
-    })
-    console.log("Fetch habits");
-    console.log(habitJson);
-  });
-}
+    fetch('/display-habit').then(response => response.json()).then((habitJson) => {
+      const habitListElement = document.getElementById('habit-name');
+      habitJson.forEach((habitJson) => {
+        habitListElement.appendChild(loadHabitElement(habitJson));
+        // TODO: Implement Tick functionality to mark habit as completed
+        // habitListElement.appendChild(createHabitTick(habitName)); 
+      })
+      console.log("Fetch habits");
+      console.log(habitJson);
+    });
+  }
 
+function reloadHabits() {
+    fetch('/display-habit').then(response => response.json()).then((habitJson) => {
+      const habitListElement = document.getElementById('create-habit-name');
+      habitJson.forEach((habitJson) => {
+        habitListElement.appendChild(createHabitElement(habitJson));
+        // TODO: Implement Tick functionality to mark habit as completed
+        // habitListElement.appendChild(createHabitTick(habitName)); 
+      })
+      console.log("Fetch habits");
+      console.log(habitJson);
+    });
+  }
 function createHabitElement(habitJson) {
   // Convert Habit JSON Object to String (without the single quote)
   var habitNameString = JSON.parse(JSON.stringify(habitJson.habitName));
@@ -18,7 +30,7 @@ function createHabitElement(habitJson) {
   // Create <li> elements for each habit
   const habitElement = document.createElement('li');
   habitElement.className = 'habit';
-  habitElement.innerHTML = habitNameString;
+  habitElement.innerHTML = habitJson.habitName;
 
   // Create <span> elements for each habit
   const titleElement = document.createElement('span');
@@ -26,11 +38,13 @@ function createHabitElement(habitJson) {
 
   // Create delete <button> elements for each habit 
   const deleteButtonElement = document.createElement('button');
-  deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.className = "delete";  
+  deleteButtonElement.innerText = 'X';
   deleteButtonElement.addEventListener('click', () => {
-    deleteHabit(habitNameString);
+    deleteHabit(habitJson);
     console.log(habitNameString);
-    habitElement.remove();
+    loadHabits();
+    //habitElement.remove();
   })
 
   habitElement.appendChild(titleElement);
@@ -40,15 +54,69 @@ function createHabitElement(habitJson) {
 
 function deleteHabit(habit) {
   const params = new URLSearchParams();
-  params.append('habitName', habit.habitName);
+  params.append('id', habit.id);
+  console.log(params.id);
   fetch('/delete-habit', {method: 'POST', body: params});
 }
 
+function loadHabitElement(habitJson) {
+    // Convert Habit JSON Object to String (without the single quote)
+    var habitNameString = JSON.parse(JSON.stringify(habitJson.habitName));
+    
+    const done = habitJson.isComplete ? "done" : "";
+    // Create <li> elements for each habit
+    const habitElement = document.createElement('li');
+    //habitElement.className = 'habit';
+    //habitElement.innerHTML = habitJson.habitName;
+    habitElement.setAttribute("class", `habit-item ${done}`);
+    habitElement.setAttribute("data-key", habitJson.id);
+  
+    // Create <span> elements for each habit
+    const titleElement = document.createElement('span');
+    titleElement.innerText = habitJson.habitName;
+  
+    // Create checkbox for each habit
+    const checkbox = document.createElement("input");
+    checkbox.id = habitJson.id;
+    checkbox.type = "checkbox";
+    const tick = document.createElement("label");
+    tick.setAttribute("for", `${habitJson.id}`);
+    tick.className = "tick js-tick";
+
+    tick.addEventListener("click", () => {
+        if(!done)
+        {
+            toggleDone(habitJson);
+            console.log("ticking...");
+            location.reload();
+        }
+
+    })
+  
+    habitElement.appendChild(titleElement);
+    habitElement.appendChild(checkbox);
+    habitElement.appendChild(tick);
+    return habitElement;
+  }
+  
+  function deleteHabit(habit) {
+    const params = new URLSearchParams();
+    params.append('id', habit.id);
+    console.log(params.id);
+    fetch('/delete-habit', {method: 'POST', body: params});
+  }
+  
+  // Toggle done icon of a habit based on key value
+function toggleDone(habit) {
+    const params = new URLSearchParams();
+    params.append('id', habit.id);
+    console.log("calling update servlet");
+    fetch('/update-habit', {method: 'POST', body: params});
+  }
 function createHabitTick(habitName) {
 
 }
 
-// Commented out the basic habit site to implement database version
 /*
 let habitItems = [];
 // Create a new habit item based on the text from input
