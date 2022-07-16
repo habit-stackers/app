@@ -44,6 +44,11 @@ svg {
 }
 .habit {
 
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .list-name {
   list-style: none;
