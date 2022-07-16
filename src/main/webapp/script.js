@@ -34,7 +34,7 @@ function createHabitElement(habitJson) {
 
   // Create <span> elements for each habit
   const titleElement = document.createElement('span');
-  titleElement.innerText = " ";
+  titleElement.innerText = habitJson.habitName;
 
   // Create delete <button> elements for each habit 
   const deleteButtonElement = document.createElement('button');

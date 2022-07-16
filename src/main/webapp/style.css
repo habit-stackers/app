@@ -40,7 +40,7 @@ svg {
   height: 32px;
 }
 
-#create-habit-name {
+.create-habit-name {
   margin-bottom: 10px;
   width: 100%;
   display: flex;
