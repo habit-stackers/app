@@ -39,7 +39,8 @@ svg {
   width: 32px;
   height: 32px;
 }
-.create-habit-form {
+
+.home {
   margin: 1%;
 }
 
@@ -50,8 +51,6 @@ svg {
   align-items: center;
   justify-content: space-between;
   flex-grow: 1;
-  margin-left: 10px;
-  margin-right: 10px;
   font-size: 22px;
 }
 
