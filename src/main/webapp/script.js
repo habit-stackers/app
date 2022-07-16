@@ -108,7 +108,7 @@ function loadHabitElement(habitJson) {
   }
   
   // Toggle done icon of a habit based on key value
-function toggleDone(habit) {
+function toggleNotDone(habit) {
     const params = new URLSearchParams();
     params.append('id', habit.id);
     console.log("calling update servlet");
@@ -118,7 +118,7 @@ function createHabitTick(habitName) {
 
 }
 
-function toggleNotDone(habit) {
+function toggleDone(habit) {
   const params = new URLSearchParams();
   params.append('id', habit.id);
   console.log("calling update servlet");
