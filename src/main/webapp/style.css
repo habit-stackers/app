@@ -41,7 +41,7 @@ svg {
 }
 
 .habit {
-
+  list-style: none;
 }
 .list-name {
   list-style: none;
