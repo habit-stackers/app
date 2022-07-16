@@ -40,9 +40,6 @@ svg {
   height: 32px;
 }
 
-.home {
-  margin: 1%;
-}
 
 #create-habit-name {
   margin-bottom: 10px;
@@ -50,7 +47,6 @@ svg {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 22px;
 }
 
 .habit {
