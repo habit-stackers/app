@@ -40,8 +40,23 @@ svg {
   height: 32px;
 }
 
-.button-id {
-  padding: 1%;
+.button {
+  background-color: white;
+  border: 2px solid black;
+  color: black;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 5%;
+  padding-right:5%;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  
+}
+
+.button:hover {
+  
+  background-color: black;
 }
 
 .create-habit-name {

@@ -80,7 +80,7 @@ function createHabitElement(habitJson) {
 
   // Create delete <button> elements for each habit 
   const deleteButtonElement = document.createElement('button');
-  deleteButtonElement.className = "delete";  
+  deleteButtonElement.className = "button";  
   deleteButtonElement.innerText = 'X';
   deleteButtonElement.addEventListener('click', () => {
     deleteHabit(habitJson);
