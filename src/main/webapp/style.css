@@ -40,13 +40,13 @@ svg {
   height: 32px;
 }
 
-
 #create-habit-name {
   margin-bottom: 10px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 22px;
 }
 
 .habit {
