@@ -22,10 +22,8 @@ function reloadHabits() {
       console.log("Fetch habits");
       console.log(habitJson);
     });
-  }
+}
 function createHabitElement(habitJson) {
-  // Convert Habit JSON Object to String (without the single quote)
-  var habitNameString = JSON.parse(JSON.stringify(habitJson.habitName));
 
   // Create <li> elements for each habit
   const habitElement = document.createElement('li');
@@ -42,9 +40,9 @@ function createHabitElement(habitJson) {
   deleteButtonElement.innerText = 'X';
   deleteButtonElement.addEventListener('click', () => {
     deleteHabit(habitJson);
-    console.log(habitNameString);
+    console.log(habitJson.habitName);
     loadHabits();
-    //habitElement.remove();
+    habitElement.remove();
   })
 
   habitElement.appendChild(titleElement);
@@ -60,14 +58,9 @@ function deleteHabit(habit) {
 }
 
 function loadHabitElement(habitJson) {
-    // Convert Habit JSON Object to String (without the single quote)
-    var habitNameString = JSON.parse(JSON.stringify(habitJson.habitName));
-    
     const done = habitJson.isComplete ? "done" : "";
     // Create <li> elements for each habit
     const habitElement = document.createElement('li');
-    //habitElement.className = 'habit';
-    //habitElement.innerHTML = habitJson.habitName;
     habitElement.setAttribute("class", `habit-item ${done}`);
     habitElement.setAttribute("data-key", habitJson.id);
   
@@ -84,13 +77,18 @@ function loadHabitElement(habitJson) {
     tick.className = "tick js-tick";
 
     tick.addEventListener("click", () => {
-        if(!done)
-        {
-            toggleDone(habitJson);
-            console.log("ticking...");
-            location.reload();
-        }
+        toggleDone(habitJson);
+        console.log("ticking...");
+        location.reload();
+    })
 
+    tick.addEventListener("click", () => {
+        if (done) 
+        {
+          toggleNotDone(habitJson);
+          console.log("unticking...");
+          location.reload();
+        }
     })
   
     habitElement.appendChild(titleElement);
@@ -108,13 +106,10 @@ function loadHabitElement(habitJson) {
   
   // Toggle done icon of a habit based on key value
 function toggleDone(habit) {
-    const params = new URLSearchParams();
-    params.append('id', habit.id);
-    console.log("calling update servlet");
-    fetch('/update-habit', {method: 'POST', body: params});
-  }
-function createHabitTick(habitName) {
-
+  const params = new URLSearchParams();
+  params.append('id', habit.id);
+  console.log("calling update servlet");
+  fetch('/update-habit', {method: 'POST', body: params});
 }
 
 /*

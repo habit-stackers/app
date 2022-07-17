@@ -41,8 +41,13 @@ svg {
 }
 
 .habit {
-
+  list-style: none;
 }
+
+.delete {
+  float: right;
+}
+
 .list-name {
   list-style: none;
   margin-bottom: 20px;
