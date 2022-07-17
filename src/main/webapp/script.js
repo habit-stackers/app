@@ -82,8 +82,9 @@ function createHabitElement(habitJson) {
   deleteButtonElement.addEventListener('click', () => {
     deleteHabit(habitJson);
     // Convert Habit JSON Object to String (without the single quote)
-    console.log(JSON.parse(JSON.stringify(habitJson.habitName)));
+    console.log(habitJson.habitName);
     loadHabits();
+    location.reload();
     //habitElement.remove();
   })
 
