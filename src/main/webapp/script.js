@@ -77,12 +77,9 @@ function loadHabitElement(habitJson) {
     tick.className = "tick js-tick";
 
     tick.addEventListener("click", () => {
-        if(!done)
-        {
-            toggleDone(habitJson);
-            console.log("ticking...");
-            location.reload();
-        }
+        toggleDone(habitJson);
+        console.log("ticking...");
+        location.reload();
     })
 
     tick.addEventListener("click", () => {
@@ -108,16 +105,6 @@ function loadHabitElement(habitJson) {
   }
   
   // Toggle done icon of a habit based on key value
-function toggleNotDone(habit) {
-    const params = new URLSearchParams();
-    params.append('id', habit.id);
-    console.log("calling update servlet");
-    fetch('/update-habit', {method: 'POST', body: params});
-  }
-function createHabitTick(habitName) {
-
-}
-
 function toggleDone(habit) {
   const params = new URLSearchParams();
   params.append('id', habit.id);
