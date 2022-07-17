@@ -84,11 +84,9 @@ function createHabitElement(habitJson) {
   deleteButtonElement.innerText = 'X';
   deleteButtonElement.addEventListener('click', () => {
     deleteHabit(habitJson);
-
     // Convert Habit JSON Object to String (without the single quote)
     console.log(JSON.parse(JSON.stringify(habitJson.habitName)));
     loadHabits();
-
     //habitElement.remove();
   })
 
@@ -103,25 +101,20 @@ function deleteHabit(habit) {
   console.log(params.id);
   fetch('/delete-habit', {method: 'POST', body: params});
 }
-
-
   
-  function deleteHabit(habit) {
-    const params = new URLSearchParams();
-    params.append('id', habit.id);
-    console.log(params.id);
-    fetch('/delete-habit', {method: 'POST', body: params});
-  }
+function deleteHabit(habit) {
+  const params = new URLSearchParams();
+  params.append('id', habit.id);
+  console.log(params.id);
+  fetch('/delete-habit', {method: 'POST', body: params});
+}
   
   // Toggle done icon of a habit based on key value
 function toggleDone(habit) {
-    const params = new URLSearchParams();
-    params.append('id', habit.id);
-    console.log("calling update servlet");
-    fetch('/update-habit', {method: 'POST', body: params});
-  }
-function createHabitTick(habitName) {
-
+  const params = new URLSearchParams();
+  params.append('id', habit.id);
+  console.log("calling update servlet");
+  fetch('/update-habit', {method: 'POST', body: params});
 }
 
 /*
