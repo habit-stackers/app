@@ -9,15 +9,17 @@
   </head>
   <body onload="loadHabits()">
     <main>
+        <div class = "profile">
         <div id="LoginScreen">
-            <button class="w-100 btn btn-lg btn-primary" id="login">Login with Google</button>
+            <button class="w-100 btn btn-primary btn-lg" id="login">Login with Google</button>
           </div>
       
           <div id="dashboard">
             <div id="userDetails"></div>
-            <button id="logout">Logout</button>
+            <button class="btn btn-secondary btn-sm" id="logout">Logout</button>
           </div>
     
+
           <!-- Boostrap and Popper (Bootstrap for dropdowns and extra stuff, added just incase we needed it)-->
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
           <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
@@ -62,7 +64,7 @@
             // Showing user details
             function showUserDetails(user){
               document.getElementById('userDetails').innerHTML = `
-                <img src="${user.photoURL}" style="width:10%">
+                <img src="${user.photoURL}" width="60" style="vertical-align:middle">
                 <p>Name: ${user.displayName}</p>
                 <p>Email: ${user.email}</p>
               `
@@ -93,6 +95,7 @@
             }
             checkAuthState()
           </script>
+        </div>
 
         <div class="container">
           <h1 class="app-title">Habits</h1>
