@@ -38,12 +38,9 @@ function loadHabitElement(habitJson) {
   tick.className = "tick js-tick";
 
   tick.addEventListener("click", () => {
-      if(!done)
-      {
-          toggleDone(habitJson);
-          console.log("ticking...");
-          location.reload();
-      }
+    toggleDone(habitJson);
+    console.log("ticking...");
+    location.reload();
 
   })
 
