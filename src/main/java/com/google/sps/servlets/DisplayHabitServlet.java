@@ -8,6 +8,8 @@ import com.google.cloud.datastore.QueryResults;
 import com.google.cloud.datastore.TimestampValue;
 import com.google.cloud.datastore.StructuredQuery.OrderBy;
 import com.google.gson.Gson;
+import com.google.protobuf.Timestamp;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,7 @@ public class DisplayHabitServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
      Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     
-    Query<Entity> query = Query.newEntityQueryBuilder().setKind("HabitData")/*.setOrderBy(OrderBy.desc("habitName"))*/.build();
+    Query<Entity> query = Query.newEntityQueryBuilder().setKind("HabitData").setOrderBy(OrderBy.asc("timeCreated")).build();
     QueryResults<Entity> results = datastore.run(query);
 
     // Create a List object of type HabitData
@@ -43,9 +45,10 @@ public class DisplayHabitServlet extends HttpServlet {
       String listName = entity.getString("listName");
       String habitName = entity.getString("habitName");
       Boolean isComplete = entity.getBoolean("isComplete");
+      com.google.cloud.Timestamp timeCreated = entity.getTimestamp("timeCreated");
 
       // Create new Entity using the obtained attribute values
-      HabitData habitList = new HabitData(id, habitName, listName, isComplete);
+      HabitData habitList = new HabitData(id, habitName, listName, isComplete, timeCreated);
 
       // Add to the HabitList List Object
       newHabitList.add(habitList);
