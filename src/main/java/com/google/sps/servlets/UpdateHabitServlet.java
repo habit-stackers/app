@@ -27,8 +27,6 @@ public class UpdateHabitServlet extends HttpServlet {
 
         Transaction transaction = datastore.newTransaction();
           Entity task = transaction.get(habitEntityKey);
-          System.out.println("Entity task = transaction.get(habitEntityKey) : " + task );
-          System.out.println(task.getBoolean("isComplete"));
           if (task.getBoolean("isComplete")) {
             transaction.put(Entity.newBuilder(task).set("isComplete", false).build());
           }
