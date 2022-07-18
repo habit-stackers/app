@@ -11,18 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet responsible for deleting habits. */
+// This servlet deletes a habit by passing a header of type habitName 
+// TODO: Currently does not work. Fix
 @WebServlet("/delete-habit")
 public class DeleteHabitServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      String habitName = request.getParameter("habitName");
-  
-      Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-      KeyFactory keyFactory = datastore.newKeyFactory().setKind("HabitData");
-      Key habitEntityKey = keyFactory.newKey(habitName);
-      datastore.delete(habitEntityKey);
+    
+        long id = Long.parseLong(request.getParameter("id"));
+
+        Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+        KeyFactory keyFactory = datastore.newKeyFactory().setKind("HabitData");
+        Key habitEntityKey = keyFactory.newKey(id);
+
+        datastore.delete(habitEntityKey);
     }
 }
-  

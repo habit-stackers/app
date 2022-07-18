@@ -7,7 +7,7 @@
     <!-- Bootstrap implementation-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
-  <body onload="loadHabits()">
+  <body onload="loadHabits()"> 
     <main>
         <div class = "profile">
         <div id="LoginScreen">
@@ -98,19 +98,14 @@
         </div>
 
         <div class="container">
-          <h1 class="app-title">Habits</h1>
+          <h1 class="app-title">Brush teeth</h1>
           <!--
-            TODO: Commented out previous code for reference for now to test new code. Delete later.
-
           <ul id="js-habit-list"></ul>
-          
-
-          <form method="POST" action="/create-habit">
-            <input id="js-habit-input"name="habitName" type="text" placeholder="E.g. meditate for 5 min">
-          </form>
           -->
-         
-          <ul id="list-name"></ul>
+          <ul id="habit-name"></ul>
+          <form action="./modify-list.html">
+            <input type="submit" value="Modify this list" class="button"/>
+          </form>
         </div>
 
    
@@ -118,7 +113,6 @@
       
       <script src="./script.js"></script>
       <!--
-         TODO: Commented out previous code for reference for now to test new code. Delete later.
 
       <svg>
         <defs>

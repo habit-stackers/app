@@ -5,25 +5,35 @@ import com.google.cloud.datastore.DatastoreOptions;
 import com.google.cloud.datastore.Entity;
 import com.google.cloud.datastore.Key;
 import com.google.cloud.datastore.KeyFactory;
+import com.google.cloud.datastore.Transaction;
+
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// NOTE: This does not work right now
+//NOTE: This does not work right now
 @WebServlet("/update-habit")
 public class UpdateHabitServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-      String keyName = "habitName";
-      Key key = datastore.newKeyFactory().setKind("HabitData").newKey(keyName);
-      Entity.Builder entityBuilder = Entity.newBuilder(key);
+        long id = Long.parseLong(request.getParameter("id"));
 
-      // TODO: Figure out how to pass user input here
-      entityBuilder.set("propertyName", "value"); 
-      Entity entity = entityBuilder.build();
-      datastore.put(entity);
+        Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+       
+        KeyFactory keyFactory = datastore.newKeyFactory().setKind("HabitData");  
+        Key habitEntityKey = keyFactory.newKey(id);
+
+        Transaction transaction = datastore.newTransaction();
+          Entity task = transaction.get(habitEntityKey);
+          if (task.getBoolean("isComplete")) {
+            transaction.put(Entity.newBuilder(task).set("isComplete", false).build());
+          }
+          else if (!task.getBoolean("isComplete")) {
+            transaction.put(Entity.newBuilder(task).set("isComplete", true).build());
+          }
+          transaction.commit();
+
     }
 }
