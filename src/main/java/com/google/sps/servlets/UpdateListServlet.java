@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//NOTE: This does not work right now 
 @WebServlet("/update-list")
 public class UpdateListServlet extends HttpServlet {
     @Override
