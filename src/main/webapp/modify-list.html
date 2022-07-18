@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,11 @@
 <body onload="reloadHabits()">
     <main>
         <div class="container">
-            <h1 class="app-title">Brush teeth</h1>
+            <form method="POST" action="/update-list"">
+                <input name="listName" type="text" placeholder="Enter your exitsing habit here">
+            </form>
+            <div id="app-title"></div>
+            
             <ul id="create-habit-name"></ul>
             <form method="POST" action="/create-habit" id="create">
                 <input id="js-habit-input" name="habitName" type="text" placeholder="E.g. meditate for 5 min">

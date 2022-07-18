@@ -10,6 +10,16 @@ function loadHabits() {
       console.log("Fetch habits");
       console.log(habitJson);
     });
+    fetch('/display-list').then(response => response.json()).then((listJson) => {
+        listJson.forEach((listJson) => {
+            console.log("loading title...");
+            const listNameElement = document.getElementById('app-title');
+            console.log(listNameElement);
+            const titleElement = document.createElement('h1');
+            titleElement.innerText = listJson.listName;
+            listNameElement.append(titleElement);
+        })
+    });
   }
 
 // For main page
@@ -63,35 +73,50 @@ function reloadHabits() {
     console.log("Fetch habits");
     console.log(habitJson);
   });
+  fetch('/display-list').then(response => response.json()).then((listJson) => {
+    listJson.forEach((listJson) => {
+        console.log("loading title...");
+        const listNameElement = document.getElementById('app-title');
+        console.log(listNameElement);
+        const titleElement = document.createElement('h1');
+        titleElement.innerText = listJson.listName;
+        listNameElement.appendChild(titleElement);
+    })
+});
 }
+
+
+
+
 
 // For Modify Page
+// For Modify Page
 function createHabitElement(habitJson) {
-  // Create <li> elements for each habit
-  const habitElement = document.createElement('li');
-  habitElement.setAttribute("class", `habit-item`);
-
-  // Create <span> elements for each habit
-  const titleElement = document.createElement('span');
-  titleElement.innerText = habitJson.habitName;
-
-  // Create delete <button> elements for each habit 
-  const deleteButtonElement = document.createElement('button');
-  deleteButtonElement.className = "button";  
-  deleteButtonElement.innerText = 'X';
-  deleteButtonElement.addEventListener('click', () => {
-    deleteHabit(habitJson);
-    // Convert Habit JSON Object to String (without the single quote)
-    console.log(habitJson.habitName);
-    loadHabits();
-    location.reload();
-    //habitElement.remove();
-  })
-
-  habitElement.appendChild(titleElement);
-  habitElement.appendChild(deleteButtonElement);
-  return habitElement;
-}
+    // Create <li> elements for each habit
+    const habitElement = document.createElement('li');
+    habitElement.setAttribute("class", `habit-item`);
+  
+    // Create <span> elements for each habit
+    const titleElement = document.createElement('span');
+    titleElement.innerText = habitJson.habitName;
+  
+    // Create delete <button> elements for each habit 
+    const deleteButtonElement = document.createElement('button');
+    deleteButtonElement.className = "button";  
+    deleteButtonElement.innerText = 'X';
+    deleteButtonElement.addEventListener('click', () => {
+      deleteHabit(habitJson);
+      // Convert Habit JSON Object to String (without the single quote)
+      console.log(habitJson.habitName);
+      loadHabits();
+      location.reload();
+      //habitElement.remove();
+    })
+  
+    habitElement.appendChild(titleElement);
+    habitElement.appendChild(deleteButtonElement);
+    return habitElement;
+  }
 
 function deleteHabit(habit) {
   const params = new URLSearchParams();
