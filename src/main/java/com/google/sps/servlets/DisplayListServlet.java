@@ -28,7 +28,7 @@ public class DisplayListServlet extends HttpServlet {
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     
     Query<Entity> query =
-        Query.newEntityQueryBuilder().setKind("ListData")/*.setOrderBy(OrderBy.desc("listName"))*/.build();
+        Query.newEntityQueryBuilder().setKind("ListData").setOrderBy(OrderBy.desc("listName")).build();
     QueryResults<Entity> results = datastore.run(query);
 
     List<ListData> newListData = new ArrayList<>();

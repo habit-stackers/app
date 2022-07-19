@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
+import org.jsoup.safety.Safelist;
 import org.jsoup.safety.Whitelist;
 
 @WebServlet("/create-list")
@@ -19,11 +20,11 @@ public class CreateListServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-      String list = Jsoup.clean(request.getParameter("listName"), Whitelist.none());
-      String username = Jsoup.clean(request.getParameter("username"), Whitelist.none());
+      String list = Jsoup.clean(request.getParameter("listName"), Safelist.none());
+      String username = "jessy413";
   
       Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-      KeyFactory keyFactory = datastore.newKeyFactory().setKind("List");
+      KeyFactory keyFactory = datastore.newKeyFactory().setKind("ListData");
       FullEntity listEntity =
           Entity.newBuilder(keyFactory.newKey())
               .set("listName", list)
@@ -31,7 +32,7 @@ public class CreateListServlet extends HttpServlet {
               .build();
       datastore.put(listEntity);
   
-      response.sendRedirect("/index.html");
+      response.sendRedirect("/modify-list.html");
     }
 }
 
