@@ -1,8 +1,4 @@
 html {
-  box-sizing: border-box;
-}
-
-*, *::before, *::after {
   box-sizing: inherit;
   margin: 0;
   padding: 0;
@@ -27,6 +23,17 @@ body {
   margin-bottom: 5vh;
   overflow-y: auto;
 }
+
+  .profile{
+    box-shadow: 0 0 30px rgba(0,0,0,5);
+    overflow: hidden;
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  img{
+      border-radius:50%;
+  }
 
 .app-title {
   text-align: center;
@@ -55,7 +62,6 @@ svg {
 }
 
 .button:hover {
-  
   background-color: gray;
 }
 
